@@ -9,4 +9,19 @@
         tools:showIn="@layout/activity_main"
         tools:context=".MainActivity">
 
+    <TextView
+            android:text="@string/helloworld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="83dp" android:layout_marginEnd="131dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:layout_editor_absoluteY="336dp" tools:layout_editor_absoluteX="26dp"/>
 </android.support.constraint.ConstraintLayout>
