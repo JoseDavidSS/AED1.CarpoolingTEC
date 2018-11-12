@@ -9,13 +9,18 @@
         tools:showIn="@layout/activity_main"
         tools:context=".MainActivity">
 
+    <ImageView
+            android:layout_width="425dp"
+            android:layout_height="771dp" app:srcCompat="@mipmap/background"
+            tools:layout_editor_absoluteY="41dp" tools:layout_editor_absoluteX="0dp" android:id="@+id/backgroundView"/>
     <TextView
-            android:text="@string/helloworld"
+            android:text="Made in Costa Rica by BrokenTeam"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="83dp" android:layout_marginEnd="131dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_height="22dp"
+            android:id="@+id/textCredits" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="564dp" android:layout_marginEnd="168dp"
+            app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/helveticaregular"
+            android:textColor="@android:color/black"/>
 
 
     <com.facebook.login.widget.LoginButton
@@ -23,5 +28,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            tools:layout_editor_absoluteY="336dp" tools:layout_editor_absoluteX="26dp"/>
+            tools:layout_editor_absoluteY="511dp" tools:layout_editor_absoluteX="115dp"/>
+    <Button
+            android:text="Rider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="361dp"
+            tools:layout_editor_absoluteX="161dp" android:id="@+id/toRider_button"
+    />
+    <Button
+            android:text="Driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="437dp"
+            tools:layout_editor_absoluteX="161dp" android:id="@+id/toDriver_button"/>
+    <ImageView
+            android:layout_width="193dp"
+            android:layout_height="202dp" app:srcCompat="@mipmap/logo" tools:layout_editor_absoluteY="74dp"
+            tools:layout_editor_absoluteX="109dp" android:id="@+id/logoView"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@mipmap/labellogo" tools:layout_editor_absoluteY="290dp"
+            tools:layout_editor_absoluteX="37dp" android:id="@+id/logoLabel"/>
+
+    <TextView
+            android:text="@string/helloworld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="304dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>
