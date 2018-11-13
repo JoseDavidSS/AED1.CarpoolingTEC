@@ -10,8 +10,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/linkedin-sdk" />
           </set>
         </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/linkedin-sdk" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../.gradle" />
       </GradleProjectSettings>
     </option>
   </component>
