@@ -2,6 +2,7 @@ package main.java.tec.ac.cr.carpoolingtec;
 
 public class Node {
     public Node next;
+    public int id;
     private int posx;
     private int posy;
 
@@ -10,8 +11,9 @@ public class Node {
      * @param posx Eje x del vértice inicial de la lista.
      * @param posy Eje x del vértice final de la lista.
      */
-    public Node(int posx, int posy) {
+    public Node(int posx, int posy, int id) {
         this.next = null;
+        this.id = id;
         this.posx = posx;
         this.posy = posy;
     }
