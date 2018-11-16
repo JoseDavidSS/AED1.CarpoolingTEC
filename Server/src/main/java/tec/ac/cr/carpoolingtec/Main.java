@@ -26,7 +26,6 @@ public class Main {
                     matrixEnableRoads[i][j] = 0;
                 } else {
                     int road = randomWithRangeForRoad();
-                    //System.out.println(road);
                     matrixEnableRoads[i][j] = road;
                 }
             }
@@ -39,11 +38,12 @@ public class Main {
                 if (matrixEnableRoads[i][j] == 0){
                     matrixLengthRoads[i][j] = -1;
                 } else {
-                   // getRoadsLenght(Node)
+                    matrixLengthRoads[i][j] = (int) getRoadsLenght(list.searchElement(i), list.searchElement(j));
                 }
             }
         }
     }
+
     public static void printGraph(int[][] matrix) {
         System.out.println("Matriz miedo terror:");
         for (int i = 0; i < 30; i++) {
@@ -79,9 +79,6 @@ public class Main {
         int posX2 = node2.getPosx();
         int posY2 = node2.getPosy();
         double length = Math.sqrt(Math.abs(((posX2-posX1)*(posX2-posX1))) + ((posY2-posY1)*(posY2-posY1)));
-        return length;
+        return (int) length;
     }
-
-
-
 }

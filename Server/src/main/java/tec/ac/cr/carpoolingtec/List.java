@@ -18,7 +18,11 @@ public class List {
         }
     }
 
-    public static void searchElement (int id){
-
+    public Node searchElement (int id){
+        Node tmp = this.head;
+        while (tmp.id != id){
+            tmp = tmp.next;
+            }
+        return tmp;
     }
 }
