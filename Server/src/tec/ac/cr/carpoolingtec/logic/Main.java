@@ -1,36 +1,29 @@
 package tec.ac.cr.carpoolingtec.logic;
 
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
 
         List list = new List();
         createNodes(list);
-        int matrixEnableRoads[][] = new int[5][5];
-        int matrixLenghtRoads[][] = new int[5][5];
+        int matrixEnableRoads[][] = new int[30][30];
+        int matrixLenghtRoads[][] = new int[30][30];
         createRoads(matrixEnableRoads);
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
         printGraph(matrixLenghtRoads);
-        int roadMatrix[][] = createRoadsMatrix(5,5);
-        setMinRoad(matrixLenghtRoads,roadMatrix);
-        printGraph( roadMatrix);
-        ArrayList<Integer> route = createRoute(0,3,roadMatrix);
-        for(int i:route){
-            System.out.print(i + " ");
-        }
+        printGraph(matrixEnableRoads);
+        printGraph(setMinRoad(matrixLenghtRoads, createRoadsMatrix(30, 30)));
     }
 
     public static void createNodes(List list) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             list.addElement(randomWithRangeForPosition(100, 1), randomWithRangeForPosition(100, 1), i);
         }
     }
 
     public static void createRoads(int matrixEnableRoads[][]) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 if (i == j) {
                     matrixEnableRoads[i][j] = 0;
                 } else {
@@ -42,8 +35,8 @@ public class Main {
     }
 
     public static void createLenghts(int matrixLengthRoads[][], int matrixEnableRoads[][], List list) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 if (matrixEnableRoads[i][j] == 0) {
                     if (i == j){
                         matrixLengthRoads[i][j] = 0;
@@ -59,8 +52,9 @@ public class Main {
     }
 
     public static void printGraph(int[][] matrix) {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        System.out.println("Matriz miedo terror:");
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println(" ");
@@ -95,7 +89,7 @@ public class Main {
     }
 
     public static int[][] createRoadsMatrix(int a, int b) {
-        int roadsMatrix[][] = new int[5][5];
+        int roadsMatrix[][] = new int[30][30];
         for (int j = 0; j < b; j++) {
 
             for (int i = 0; i < a; i++) {
@@ -106,14 +100,15 @@ public class Main {
     }
 
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
-        for (int i_j = 0; i_j < 5; i_j++) {
-            for (int tmp_i = 0; tmp_i < 5; tmp_i++) {
+
+
+        for (int i_j = 0; i_j < 30; i_j++) {
+            for (int tmp_i = 0; tmp_i < 30; tmp_i++) {
                 if (tmp_i != i_j) {
-                    for (int tmp_j = 0; tmp_j < 5; tmp_j++) {
+                    for (int tmp_j = 0; tmp_j < 30; tmp_j++) {
                         if (tmp_j != i_j) {
                             if (lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j] < lengthMatrix[tmp_i][tmp_j]) {
-                                roadMatrix[tmp_i][tmp_j] = i_j;
-                                lengthMatrix[tmp_i][tmp_j] = lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j];
+                                roadMatrix[tmp_j][tmp_j] = i_j;
                             }
                         }
                     }
@@ -121,15 +116,5 @@ public class Main {
             }
         }
         return roadMatrix;
-    }
-
-    public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
-       ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
-        while(roadMatrix[pointA][pointB] != pointB){
-            route.add(roadMatrix[pointA][pointB]);
-            pointA = roadMatrix[pointA][pointB];
-        }
-        route.add(roadMatrix[pointA][pointB]);
-        return route;
     }
 }
