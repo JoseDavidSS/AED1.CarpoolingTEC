@@ -14,4 +14,5 @@ public class MapData {
     public String getMapData(){
         return "jaja";
     }
+
 }

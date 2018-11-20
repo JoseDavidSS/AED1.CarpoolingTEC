@@ -1,10 +1,12 @@
 package tec.ac.cr.carpoolingtec.logic;
 
 public class Node {
+
     public Node next;
     public int id;
     private int posx;
     private int posy;
+    private int hasPerson;
 
     /**
      * Constructor de la clase.
@@ -16,6 +18,7 @@ public class Node {
         this.id = id;
         this.posx = posx;
         this.posy = posy;
+        this.hasPerson = 0;
     }
 
     /**
@@ -48,5 +51,13 @@ public class Node {
      */
     public void setPosy(int posy) {
         this.posy = posy;
+    }
+
+    public int getHasPerson() {
+        return hasPerson;
+    }
+
+    public void setHasPerson(int hasPerson) {
+        this.hasPerson = hasPerson;
     }
 }
