@@ -1,5 +1,7 @@
 package tec.ac.cr.carpoolingtec.logic;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,9 +14,12 @@ public class Main {
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
         printGraph(matrixLenghtRoads);
         int roadMatrix[][] = createRoadsMatrix(5,5);
-
         setMinRoad(matrixLenghtRoads,roadMatrix);
         printGraph( roadMatrix);
+        ArrayList<Integer> route = createRoute(0,3,roadMatrix);
+        for(int i:route){
+            System.out.print(i + " ");
+        }
     }
 
     public static void createNodes(List list) {
@@ -116,5 +121,15 @@ public class Main {
             }
         }
         return roadMatrix;
+    }
+
+    public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
+       ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
+        while(roadMatrix[pointA][pointB] != pointB){
+            route.add(roadMatrix[pointA][pointB]);
+            pointA = roadMatrix[pointA][pointB];
+        }
+        route.add(roadMatrix[pointA][pointB]);
+        return route;
     }
 }
