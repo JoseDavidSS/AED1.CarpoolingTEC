@@ -11,7 +11,10 @@ public class Main {
         createRoads(matrixEnableRoads);
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
         printGraph(matrixLenghtRoads);
-        printGraph(setMinRoad(matrixLenghtRoads, createRoadsMatrix(5, 5)));
+        int roadMatrix[][] = createRoadsMatrix(5,5);
+
+        setMinRoad(matrixLenghtRoads,roadMatrix);
+        printGraph( roadMatrix);
     }
 
     public static void createNodes(List list) {
@@ -51,7 +54,6 @@ public class Main {
     }
 
     public static void printGraph(int[][] matrix) {
-        System.out.println("Matriz miedo terror:");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -99,15 +101,14 @@ public class Main {
     }
 
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
-
-
         for (int i_j = 0; i_j < 5; i_j++) {
             for (int tmp_i = 0; tmp_i < 5; tmp_i++) {
                 if (tmp_i != i_j) {
                     for (int tmp_j = 0; tmp_j < 5; tmp_j++) {
                         if (tmp_j != i_j) {
                             if (lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j] < lengthMatrix[tmp_i][tmp_j]) {
-                                roadMatrix[tmp_j][tmp_j] = i_j;
+                                roadMatrix[tmp_i][tmp_j] = i_j;
+                                lengthMatrix[tmp_i][tmp_j] = lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j];
                             }
                         }
                     }
