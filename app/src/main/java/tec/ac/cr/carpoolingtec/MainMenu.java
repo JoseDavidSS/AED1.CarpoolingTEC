@@ -18,4 +18,9 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToDriverView(View v){
+        Intent intent = new Intent(this, DriverView.class);
+        startActivity(intent);
+    }
+
 }
