@@ -8,11 +8,10 @@ import javax.ws.rs.core.MediaType;
 @Path("map_data")
 public class MapData {
 
+    //Temporal: Poner @XmlRootElement o Json en la clase a convertir
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt(){
-        return "ESTA";
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getMapData(){
+        return "jaja";
     }
-
-
 }
