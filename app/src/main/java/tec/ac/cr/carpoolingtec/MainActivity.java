@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goToRiderView(View v){
-        Intent intent = new Intent(this, RiderView.class);
+    public void goToMainMenu(View v){
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 

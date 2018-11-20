@@ -13,60 +13,49 @@
 
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="716dp"
             app:srcCompat="@drawable/background"
             android:id="@+id/background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
 
     <ImageView
             android:layout_width="0dp"
             android:layout_height="83dp"
             app:srcCompat="@drawable/labellogo"
-            android:id="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            android:id="@+id/logoLabel"
+            app:layout_constraintTop_toBottomOf="@+id/logoImage"
             android:layout_marginBottom="19dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/riderButton"
+            app:layout_constraintBottom_toTopOf="@+id/enterButton"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="37dp"
             android:layout_marginEnd="37dp"
-            />
+            app:layout_constraintHorizontal_bias="1.0"/>
 
     <ImageView
             android:layout_width="243dp"
             android:layout_height="246dp"
             app:srcCompat="@drawable/carpoollogorounded"
-            android:id="@+id/imageView3"
+            android:id="@+id/logoImage"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="17dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/logoLabel"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
             android:layout_width="201dp"
             android:layout_height="75dp"
-            android:id="@+id/riderButton"
-            android:background="@drawable/rider"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            android:layout_marginBottom="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/driverButton"
-            app:layout_constraintStart_toStartOf="parent"
-            android:onClick="goToRiderView"/>
-
-    <Button
-            android:layout_width="209dp"
-            android:layout_height="91dp"
-            android:id="@+id/driverButton"
-            android:background="@drawable/driver"
-            app:layout_constraintTop_toBottomOf="@+id/riderButton"
-            android:layout_marginBottom="35dp"
+            android:id="@+id/enterButton"
+            app:layout_constraintTop_toBottomOf="@+id/logoLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:onClick="goToMainMenu"
+            android:text="Enter the Matrix"
+            android:layout_marginTop="68dp"/>
 
 </android.support.constraint.ConstraintLayout>
