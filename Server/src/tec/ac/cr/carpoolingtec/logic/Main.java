@@ -16,16 +16,19 @@ public class Main {
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
 
         int roadMatrix[][] = createRoadsMatrix(30,30);
-        transformArrayToList(roadMatrix, list);
+
+        //printGraph(matrixEnableRoads);
+        //printGraph(matrixLenghtRoads);
 
         setMinRoad(matrixLenghtRoads, roadMatrix);
-        //printGraph(roadMatrix);
 
-        printGraph(matrixEnableRoads);
-        printGraph(matrixLenghtRoads);
+        transformArrayToList(roadMatrix, list);
 
         Holder.matrixEnableRoads = matrixEnableRoads;
         Holder.matrixLenghtRoads = matrixLenghtRoads;
+
+        Holder.route.printList();
+        Holder.list.printList();
 
     }
 
@@ -142,27 +145,21 @@ public class Main {
 
     public static void transformArrayToList(int roadMatrix[][], List list){
         List route = new List();
-        ArrayList<Integer> arrayRoute = createRoute(0,10, roadMatrix);
-        System.out.println(arrayRoute.size());
-        Node tmp = list.head;
+        ArrayList<Integer> arrayRoute = createRoute(0,23, roadMatrix);
         for (int i = 0; i < arrayRoute.size(); i++){
+            Node tmp = list.head;
             while (tmp != null){
                 if (arrayRoute.get(i) == tmp.id){
                     int posx = tmp.getPosx();
                     int posy = tmp.getPosy();
                     int id = tmp.getId();
                     route.addElement(posx, posy, id);
+                    tmp = tmp.next;
                 }else{
                     tmp = tmp.next;
                 }
             }
         }
-
-        for(int i:arrayRoute){
-            System.out.print(i + " ");
-        }
-
-        System.out.println(route);
         Holder.list = list;
         Holder.route = route;
     }
