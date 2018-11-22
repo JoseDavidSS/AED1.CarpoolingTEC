@@ -48,6 +48,13 @@
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
+        <activity android:name=".RiderView">
+        </activity>
+        <activity android:name=".MainMenu">
+        </activity>
+        <activity android:name=".DriverView">
+        </activity>
+
 
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
                    android:value="barcode">
