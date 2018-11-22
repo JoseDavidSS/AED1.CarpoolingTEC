@@ -53,6 +53,22 @@ public class Node {
         this.posy = posy;
     }
 
+    /**
+     * Método para obtener el ID del nodo.
+     * @return entero con el ID.
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    /**
+     * Método para modificar el ID del nodo
+     * @param id entero con el nuevo ID
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getHasPerson() {
         return hasPerson;
     }

@@ -1,18 +1,32 @@
 package tec.ac.cr.carpoolingtec.logic;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
 
         List list = new List();
         createNodes(list);
+
         int matrixEnableRoads[][] = new int[30][30];
         int matrixLenghtRoads[][] = new int[30][30];
+
         createRoads(matrixEnableRoads);
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
-        printGraph(matrixLenghtRoads);
+
+        int roadMatrix[][] = createRoadsMatrix(30,30);
+        transformArrayToList(roadMatrix, list);
+
+        setMinRoad(matrixLenghtRoads, roadMatrix);
+        //printGraph(roadMatrix);
+
         printGraph(matrixEnableRoads);
-        printGraph(setMinRoad(matrixLenghtRoads, createRoadsMatrix(30, 30)));
+        printGraph(matrixLenghtRoads);
+
+        Holder.matrixEnableRoads = matrixEnableRoads;
+        Holder.matrixLenghtRoads = matrixLenghtRoads;
+
     }
 
     public static void createNodes(List list) {
@@ -52,7 +66,6 @@ public class Main {
     }
 
     public static void printGraph(int[][] matrix) {
-        System.out.println("Matriz miedo terror:");
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -63,7 +76,7 @@ public class Main {
 
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.5) {
+        if (road < 0.7) {
             return 0;
         } else {
             return 1;
@@ -91,7 +104,6 @@ public class Main {
     public static int[][] createRoadsMatrix(int a, int b) {
         int roadsMatrix[][] = new int[30][30];
         for (int j = 0; j < b; j++) {
-
             for (int i = 0; i < a; i++) {
                 roadsMatrix[i][j] = j;
             }
@@ -100,15 +112,14 @@ public class Main {
     }
 
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
-
-
         for (int i_j = 0; i_j < 30; i_j++) {
             for (int tmp_i = 0; tmp_i < 30; tmp_i++) {
                 if (tmp_i != i_j) {
                     for (int tmp_j = 0; tmp_j < 30; tmp_j++) {
                         if (tmp_j != i_j) {
                             if (lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j] < lengthMatrix[tmp_i][tmp_j]) {
-                                roadMatrix[tmp_j][tmp_j] = i_j;
+                                roadMatrix[tmp_i][tmp_j] = i_j;
+                                lengthMatrix[tmp_i][tmp_j] = lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j];
                             }
                         }
                     }
@@ -116,5 +127,43 @@ public class Main {
             }
         }
         return roadMatrix;
+    }
+
+    public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
+        ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
+        route.add(pointA);
+        while(roadMatrix[pointA][pointB] != pointB){
+            route.add(roadMatrix[pointA][pointB]);
+            pointA = roadMatrix[pointA][pointB];
+        }
+        route.add(roadMatrix[pointA][pointB]);
+        return route;
+    }
+
+    public static void transformArrayToList(int roadMatrix[][], List list){
+        List route = new List();
+        ArrayList<Integer> arrayRoute = createRoute(0,10, roadMatrix);
+        System.out.println(arrayRoute.size());
+        Node tmp = list.head;
+        for (int i = 0; i < arrayRoute.size(); i++){
+            while (tmp != null){
+                if (arrayRoute.get(i) == tmp.id){
+                    int posx = tmp.getPosx();
+                    int posy = tmp.getPosy();
+                    int id = tmp.getId();
+                    route.addElement(posx, posy, id);
+                }else{
+                    tmp = tmp.next;
+                }
+            }
+        }
+
+        for(int i:arrayRoute){
+            System.out.print(i + " ");
+        }
+
+        System.out.println(route);
+        Holder.list = list;
+        Holder.route = route;
     }
 }
