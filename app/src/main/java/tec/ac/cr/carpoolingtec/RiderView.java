@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import tec.ac.cr.carpoolingtec.logic.Holder;
+import tec.ac.cr.carpoolingtec.logic.List;
+import tec.ac.cr.carpoolingtec.logic.Node;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,6 +27,11 @@ public class RiderView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         lineCount.add(99);
         setContentView(R.layout.activity_rider_view);
+        // organizePoints(Holder.list);
+    }
+
+    public ArrayList getClickedPoints() {
+        return clickedPoints;
     }
 
     /**
@@ -39,6 +47,44 @@ public class RiderView extends AppCompatActivity {
             drawLine(randomNumberX(), randomNumberY(), randomNumberX(), randomNumberY());
             clickedPoints.clear();
             toggleButtons(false);
+        }
+    }
+
+    /**
+     * Draws points from point list data
+     * @param list List
+     */
+    public void drawPoints(List list) {
+        Node node = list.head;
+        int i = 1;
+        while (node != null) {
+            moveTo(i, node.getPosx(), node.getPosy());
+            i++;
+            node = node.next;
+        }
+    }
+
+    /**
+     * Draws points and lines in graph.
+     * @param enableRoads array matrix ([][]) with connections
+     * @param points List with point data
+     */
+    public void drawGraph(int[][] enableRoads, List points) {
+        drawPoints(points);
+        for (int i = 0; i > 29; i++) {
+            for (int j = 0; j > 29; j++) {
+                // If there's a connection, draw a line
+                if (enableRoads[i][j] == 1) {
+                    // Gets start and end points's x and y positions
+                    Node start = points.searchElement(i);
+                    Node end = points.searchElement(j);
+                    float startx = start.getPosx();
+                    float starty = start.getPosy();
+                    float endx = end.getPosx();
+                    float endy = end.getPosy();
+                    drawLine(startx, starty, endx, endy);
+                }
+            }
         }
     }
 
@@ -205,6 +251,5 @@ public class RiderView extends AppCompatActivity {
         int result = r.nextInt(high-low) + low;
         return result;
     }
-
 
 }
