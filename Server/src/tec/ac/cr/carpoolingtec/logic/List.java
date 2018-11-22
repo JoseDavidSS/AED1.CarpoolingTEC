@@ -25,4 +25,20 @@ public class List {
             }
         return tmp;
     }
+
+    public void printList(){
+        Node tmp = this.head;
+        String txt = "[";
+        while (tmp != null){
+            if (tmp.next != null) {
+                txt += tmp.getId() + ",";
+                tmp = tmp.next;
+            }else {
+                txt += tmp.getId() + "]";
+                break;
+
+            }
+        }
+        System.out.println(txt);
+    }
 }
