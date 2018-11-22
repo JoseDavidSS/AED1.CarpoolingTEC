@@ -15,9 +15,22 @@
             android:id="@+id/generateButton"
             android:onClick="generate"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            android:text="Hello, Rider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLabel"
+            android:textSize="36sp"
+            android:fontFamily="@font/sfdisplaybold"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"/>
 
     <Button
             android:text="1"

@@ -1,5 +1,7 @@
 package tec.ac.cr.carpoolingtec;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,7 +22,6 @@ public class RiderView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList clickedPoints = new ArrayList();
         lineCount.add(99);
         setContentView(R.layout.activity_rider_view);
     }
@@ -36,6 +38,7 @@ public class RiderView extends AppCompatActivity {
             System.out.println("Link between " + clickedPoints.get(0) + " and point " + clickedPoints.get(1));
             drawLine(randomNumberX(), randomNumberY(), randomNumberX(), randomNumberY());
             clickedPoints.clear();
+            toggleButtons(false);
         }
     }
 
@@ -93,6 +96,19 @@ public class RiderView extends AppCompatActivity {
         myBtn = (Button) findViewById(getNode(node));
         myBtn.setTranslationX(x);
         myBtn.setTranslationY(y);
+    }
+
+    /**
+     * Enables or disables buttons
+     * @param booli boolean
+     */
+    public void toggleButtons(boolean booli) {
+        int i = 1;
+        while (i != 30) {
+            Button button = (Button) findViewById(getNode(i));
+            button.setEnabled(booli);
+            i++;
+        }
     }
 
     /**
@@ -184,8 +200,8 @@ public class RiderView extends AppCompatActivity {
      */
     public int randomNumberY() {
         Random r = new Random();
-        int low = 300;
-        int high = 1600;
+        int low = 400;
+        int high = 1800;
         int result = r.nextInt(high-low) + low;
         return result;
     }

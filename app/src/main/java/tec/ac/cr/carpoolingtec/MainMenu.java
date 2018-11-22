@@ -69,6 +69,15 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    /**
+     * Changes activity to Barcode reader
+     */
+    public void goToBarcode(){
+        Intent intent = new Intent(this, BarCodeReader.class);
+        startActivity(intent);
+    }
+
     /**
      * Manages Facebook login authentication
      */
@@ -85,14 +94,14 @@ public class MainMenu extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(R.string.success);
-                goToRiderViewInternal();
+                goToBarcode();
             }
 
             @Override
             public void onCancel() {
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(R.string.failure);
-                goToRiderViewInternal();
+                goToBarcode();
             }
 
             @Override

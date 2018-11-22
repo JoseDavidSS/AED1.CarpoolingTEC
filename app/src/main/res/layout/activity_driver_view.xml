@@ -7,4 +7,24 @@
         android:layout_height="match_parent"
         tools:context=".DriverView">
 
+    <TextView
+            android:text="Hello, Driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainLabel"
+            android:textSize="36sp"
+            android:fontFamily="@font/sfdisplaybold"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"/>
+
+    <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="24dp"
+            tools:layout_editor_absoluteX="307dp"
+            android:id="@+id/nextButton"/>
 </android.support.constraint.ConstraintLayout>
