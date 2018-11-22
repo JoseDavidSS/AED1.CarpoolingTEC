@@ -9,6 +9,31 @@
         android:id="@+id/menuConstraint"
         tools:layout_editor_absoluteY="25dp">
 
+    <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="328dp"
+            android:layout_marginBottom="49dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linkedInButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"/>
+
+    <TextView
+            android:text="@string/helloworld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            android:layout_marginBottom="228dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"/>
+
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/rider"
-            app:layout_constraintVertical_bias="0.453"/>
+            app:layout_constraintVertical_bias="0.306"/>
 
     <TextView
             android:text="CarpoolingTEC"
@@ -31,8 +56,8 @@
             android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="36dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"/>
 
     <TextView
             android:text="Welcome to CarpoolingTEC!"
@@ -44,17 +69,30 @@
             android:textColor="#000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="152dp"
+            android:layout_marginTop="104dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="167dp"
             android:id="@+id/driverButton"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="76dp"
             app:layout_constraintTop_toBottomOf="@+id/riderButton"
             app:layout_constraintEnd_toEndOf="@+id/riderButton"
             android:onClick="goToDriverView"
             android:background="@drawable/driver"/>
+
+    <ImageView
+            android:layout_width="185dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/lisi"
+            android:id="@+id/linkedInButton"
+            android:contentDescription="TODO"
+            app:layout_constraintTop_toBottomOf="@+id/login_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="208dp"
+            android:onClick="onLinkedInClick"/>
 
 </android.support.constraint.ConstraintLayout>

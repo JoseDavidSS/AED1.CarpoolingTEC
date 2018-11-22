@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initializeControls(){
-        ImageView imgLogin = (ImageView)findViewById(R.id.imageView);
+        ImageView imgLogin = (ImageView)findViewById(R.id.linkedInButton);
         imgLogin.setOnClickListener(this);
         Button buttonLogout = (Button)findViewById(R.id.button2);
         buttonLogout.setOnClickListener(this);
@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.imageView:
+            case R.id.linkedInButton:
                 linkedInLogin();
                 break;
             case R.id.button2:
