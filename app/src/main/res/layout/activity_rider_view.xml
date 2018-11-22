@@ -16,8 +16,10 @@
             android:onClick="generate"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/carIcon"
+            />
 
     <TextView
             android:text="Hello, Rider"
@@ -333,6 +335,29 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/node1"
             android:background="@drawable/greendot"
             android:onClick="modifyClickedPoints"/>
+
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/caricon"
+            android:id="@+id/carIcon"
+            app:layout_constraintEnd_toStartOf="@+id/generateButton"
+            app:layout_constraintTop_toTopOf="@+id/generateButton"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="246dp"
+            app:layout_constraintBottom_toBottomOf="@+id/generateButton"
+            android:layout_marginEnd="21dp"
+            android:visibility="invisible"/>
+
+    <TextView
+            android:text="Made in Costa Rica by BrokenTeam. 2018"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/creditsLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="17dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -201,7 +201,7 @@ public class RiderView extends AppCompatActivity {
     public int randomNumberY() {
         Random r = new Random();
         int low = 400;
-        int high = 1800;
+        int high = 1700;
         int result = r.nextInt(high-low) + low;
         return result;
     }
