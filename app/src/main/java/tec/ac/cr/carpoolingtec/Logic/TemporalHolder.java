@@ -1,6 +1,6 @@
 package tec.ac.cr.carpoolingtec.Logic;
 
-public class Holder {
+public class TemporalHolder {
 
     private int matrixEnableRoads[][];
     private int matrixLenghtRoads[][];
@@ -9,7 +9,7 @@ public class Holder {
     private List route;
     private List list;
 
-    public Holder(){
+    public TemporalHolder(){
     }
 
     public int[][] getMatrixEnableRoads() {
@@ -59,4 +59,5 @@ public class Holder {
     public void setList(List list) {
         this.list = list;
     }
+
 }

@@ -6,8 +6,8 @@ public class MainBrain {
 
     public static boolean mapCreated = false;
 
-    public static Holder preparation() {
-        Holder holder = new Holder();
+    public static TemporalHolder preparation() {
+        TemporalHolder holder = new TemporalHolder();
 
         List list = new List();
         createNodes(list);
@@ -155,7 +155,7 @@ public class MainBrain {
         return route;
     }
 
-    public static void transformArrayToList(int roadMatrix[][], List list, Holder holder){
+    public static void transformArrayToList(int roadMatrix[][], List list, TemporalHolder holder){
         List route = new List();
         ArrayList<Integer> arrayRoute = createRoute(0,23, roadMatrix);
         for (int i = 0; i < arrayRoute.size(); i++){
