@@ -12,6 +12,11 @@ import java.util.ArrayList;
 @Path("route")
 public class Route {
 
+    /**
+     * Method that receives an array with 2 locations and calculates their shortest distance
+     * @param arrayList array with the 2 locations
+     * @return an array with the path to follow
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

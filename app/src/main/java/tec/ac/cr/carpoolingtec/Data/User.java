@@ -6,6 +6,12 @@ public class User {
     private int destination;
     private int id;
 
+    /**
+     * Constructor of the user class
+     * @param location current location of the user
+     * @param destination place where the user wants to go
+     * @param id identification number of the user
+     */
     public User(int location, int destination, int id) {
         this.location = location;
         this.destination = destination;

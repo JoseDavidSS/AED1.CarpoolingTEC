@@ -11,6 +11,10 @@ public class Connect {
 
     private static TemporalHolder holder;
 
+    /**
+     * Method to connect to the server to retrieve the current map data
+     * @return All the data of the map, in a graph form
+     */
     public static TemporalHolder getMapData(){
         Thread thread = new Thread(new Runnable() {
             @Override
