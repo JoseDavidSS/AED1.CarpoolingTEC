@@ -1,8 +1,6 @@
 package tec.ac.cr.carpoolingtec.Server;
 
-import android.widget.Button;
-import tec.ac.cr.carpoolingtec.Logic.Holder;
-import tec.ac.cr.carpoolingtec.R;
+import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,9 +9,9 @@ import java.net.URL;
 
 public class Connect {
 
-    private static Holder holder;
+    private static TemporalHolder holder;
 
-    public static Holder getMapData(){
+    public static TemporalHolder getMapData(){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

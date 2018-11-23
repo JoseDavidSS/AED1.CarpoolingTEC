@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RiderView extends AppCompatActivity {
+
     ArrayList clickedPoints = new ArrayList();
     ArrayList lineCount = new ArrayList();
 

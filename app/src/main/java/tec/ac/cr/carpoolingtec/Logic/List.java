@@ -1,6 +1,7 @@
 package tec.ac.cr.carpoolingtec.Logic;
 
 public class List {
+
     public Node head = null;
     public int length = 0;
 

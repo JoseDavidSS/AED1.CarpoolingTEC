@@ -146,7 +146,7 @@ public class MainBrain {
     }
 
     public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
-        ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
+        ArrayList<Integer> route = new ArrayList<Integer>();
         route.add(pointA);
         while(roadMatrix[pointA][pointB] != pointB){
             route.add(roadMatrix[pointA][pointB]);
