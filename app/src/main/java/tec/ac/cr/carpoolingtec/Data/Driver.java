@@ -5,11 +5,13 @@ public class Driver extends User{
     private int peopleInside;
     private boolean arrived;
 
-    public Driver(int location, int peopleInside) {
-        super(location);
+    public Driver(int location, int peopleInside, int destination, int id) {
+        super(location, destination, id);
         this.peopleInside = peopleInside;
         this.arrived = false;
     }
+
+    public Driver(){}
 
     public int getPeopleInside() {
         return peopleInside;
@@ -25,5 +27,9 @@ public class Driver extends User{
 
     public void setArrived(boolean arrived) {
         this.arrived = arrived;
+    }
+
+    public void addPeople(){
+        this.peopleInside++;
     }
 }

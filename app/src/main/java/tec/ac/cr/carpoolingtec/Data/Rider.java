@@ -2,22 +2,14 @@ package tec.ac.cr.carpoolingtec.Data;
 
 public class Rider extends User{
 
-    private int id;
     private boolean inCar;
 
-    public Rider(int id, int location, boolean inCar) {
-        super(location);
-        this.id = id;
+    public Rider(int id, int location, boolean inCar, int destination) {
+        super(location, destination, id);
         this.inCar = inCar;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public Rider(){}
 
     public boolean isInCar() {
         return inCar;
