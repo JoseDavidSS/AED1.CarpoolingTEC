@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import tec.ac.cr.carpoolingtec.Logic.List;
+import tec.ac.cr.carpoolingtec.Logic.Node;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,9 +21,13 @@ public class RiderView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayList clickedPoints = new ArrayList();
         lineCount.add(99);
         setContentView(R.layout.activity_rider_view);
+        // organizePoints(Holder.list);
+    }
+
+    public ArrayList getClickedPoints() {
+        return clickedPoints;
     }
 
     /**
@@ -36,6 +42,45 @@ public class RiderView extends AppCompatActivity {
             System.out.println("Link between " + clickedPoints.get(0) + " and point " + clickedPoints.get(1));
             drawLine(randomNumberX(), randomNumberY(), randomNumberX(), randomNumberY());
             clickedPoints.clear();
+            toggleButtons(false);
+        }
+    }
+
+    /**
+     * Draws points from point list data
+     * @param list List
+     */
+    public void drawPoints(List list) {
+        Node node = list.head;
+        int i = 1;
+        while (node != null) {
+            moveTo(i, node.getPosx(), node.getPosy());
+            i++;
+            node = node.next;
+        }
+    }
+
+    /**
+     * Draws points and lines in graph.
+     * @param enableRoads array matrix ([][]) with connections
+     * @param points List with point data
+     */
+    public void drawGraph(int[][] enableRoads, List points) {
+        drawPoints(points);
+        for (int i = 0; i > 29; i++) {
+            for (int j = 0; j > 29; j++) {
+                // If there's a connection, draw a line
+                if (enableRoads[i][j] == 1) {
+                    // Gets start and end points's x and y positions
+                    Node start = points.searchElement(i);
+                    Node end = points.searchElement(j);
+                    float startx = start.getPosx();
+                    float starty = start.getPosy();
+                    float endx = end.getPosx();
+                    float endy = end.getPosy();
+                    drawLine(startx, starty, endx, endy);
+                }
+            }
         }
     }
 
@@ -93,6 +138,19 @@ public class RiderView extends AppCompatActivity {
         myBtn = (Button) findViewById(getNode(node));
         myBtn.setTranslationX(x);
         myBtn.setTranslationY(y);
+    }
+
+    /**
+     * Enables or disables buttons
+     * @param booli boolean
+     */
+    public void toggleButtons(boolean booli) {
+        int i = 1;
+        while (i != 30) {
+            Button button = (Button) findViewById(getNode(i));
+            button.setEnabled(booli);
+            i++;
+        }
     }
 
     /**
@@ -184,11 +242,10 @@ public class RiderView extends AppCompatActivity {
      */
     public int randomNumberY() {
         Random r = new Random();
-        int low = 300;
-        int high = 1600;
+        int low = 400;
+        int high = 1700;
         int result = r.nextInt(high-low) + low;
         return result;
     }
-
 
 }

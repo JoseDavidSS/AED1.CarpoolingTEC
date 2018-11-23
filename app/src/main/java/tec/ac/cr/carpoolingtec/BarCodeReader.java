@@ -2,6 +2,7 @@ package tec.ac.cr.carpoolingtec;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
@@ -32,7 +33,7 @@ public class BarCodeReader extends AppCompatActivity {
         setContentView(R.layout.activity_bar_code_reader);
 
         surfaceView = findViewById(R.id.surfaceView);
-        textView = findViewById(R.id.textView3);
+        textView = findViewById(R.id.barcodeString);
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.CODE_128)
@@ -89,7 +90,6 @@ public class BarCodeReader extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void exit(View v){
