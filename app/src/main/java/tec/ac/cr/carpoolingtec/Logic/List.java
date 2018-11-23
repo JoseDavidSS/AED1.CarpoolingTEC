@@ -1,4 +1,4 @@
-package tec.ac.cr.carpoolingtec.logic;
+package tec.ac.cr.carpoolingtec.Logic;
 
 public class List {
     public Node head = null;

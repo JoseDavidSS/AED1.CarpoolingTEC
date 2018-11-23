@@ -1,7 +1,5 @@
 package tec.ac.cr.carpoolingtec;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -10,10 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import tec.ac.cr.carpoolingtec.logic.Holder;
-import tec.ac.cr.carpoolingtec.logic.List;
-import tec.ac.cr.carpoolingtec.logic.Node;
+import tec.ac.cr.carpoolingtec.Logic.List;
+import tec.ac.cr.carpoolingtec.Logic.Node;
 
 import java.util.ArrayList;
 import java.util.Random;
