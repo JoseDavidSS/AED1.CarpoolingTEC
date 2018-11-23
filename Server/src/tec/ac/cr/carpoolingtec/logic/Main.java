@@ -8,6 +8,7 @@ public class Main {
 
         List list = new List();
         createNodes(list);
+        list.printList();
 
         int matrixEnableRoads[][] = new int[30][30];
         int matrixLenghtRoads[][] = new int[30][30];
@@ -17,8 +18,8 @@ public class Main {
 
         int roadMatrix[][] = createRoadsMatrix(30,30);
 
-        //printGraph(matrixEnableRoads);
-        //printGraph(matrixLenghtRoads);
+        printGraph(matrixEnableRoads);
+        printGraph(matrixLenghtRoads);
 
         setMinRoad(matrixLenghtRoads, roadMatrix);
 
@@ -28,13 +29,11 @@ public class Main {
         Holder.matrixLenghtRoads = matrixLenghtRoads;
 
         Holder.route.printList();
-        Holder.list.printList();
-
     }
 
     public static void createNodes(List list) {
         for (int i = 0; i < 30; i++) {
-            list.addElement(randomWithRangeForPosition(100, 1), randomWithRangeForPosition(100, 1), i);
+            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
         }
     }
 
@@ -58,7 +57,7 @@ public class Main {
                     if (i == j){
                         matrixLengthRoads[i][j] = 0;
                     }else {
-                        matrixLengthRoads[i][j] = 1000;
+                        matrixLengthRoads[i][j] = 10000;
                     }
                 }
                 else{
@@ -71,15 +70,15 @@ public class Main {
     public static void printGraph(int[][] matrix) {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                System.out.print(matrix[i][j] + " ");
+                System.out.print(matrix[i][j] + "    ");
             }
-            System.out.println(" ");
+            System.out.println("    ");
         }
     }
 
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.7) {
+        if (road < 0.8) {
             return 0;
         } else {
             return 1;
@@ -90,7 +89,7 @@ public class Main {
         int range = (max - min) + 1;
         int number = (int) (Math.random() * range) + min;
         if (number == 0) {
-            randomWithRangeForPosition(100, 1);
+            randomWithRangeForPosition(max, min);
         }
         return number;
     }

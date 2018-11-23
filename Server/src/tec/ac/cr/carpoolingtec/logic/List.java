@@ -30,11 +30,14 @@ public class List {
         Node tmp = this.head;
         String txt = "[";
         while (tmp != null){
+            int id = tmp.getId();
+            int posx = tmp.getPosx();
+            int posy = tmp.getPosy();
             if (tmp.next != null) {
-                txt += tmp.getId() + ",";
+                txt += "(" + id + "," + posx + "," + posy + ") , ";
                 tmp = tmp.next;
             }else {
-                txt += tmp.getId() + "]";
+                txt += "(" + id + "," + posx + "," + posy + ")]";
                 break;
 
             }
