@@ -11,6 +11,7 @@ public class MainBrain {
 
         List list = new List();
         createNodes(list);
+        list.printList();
 
         int matrixEnableRoads[][] = new int[30][30];
         int matrixLenghtRoads[][] = new int[30][30];
@@ -46,7 +47,7 @@ public class MainBrain {
 
     public static void createNodes(List list) {
         for (int i = 0; i < 30; i++) {
-            list.addElement(randomWithRangeForPosition(100, 1), randomWithRangeForPosition(100, 1), i);
+            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
         }
     }
 
@@ -70,7 +71,7 @@ public class MainBrain {
                     if (i == j){
                         matrixLengthRoads[i][j] = 0;
                     }else {
-                        matrixLengthRoads[i][j] = 1000;
+                        matrixLengthRoads[i][j] = 10000;
                     }
                 }
                 else{
@@ -83,15 +84,15 @@ public class MainBrain {
     public static void printGraph(int[][] matrix) {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
-                System.out.print(matrix[i][j] + " ");
+                System.out.print(matrix[i][j] + "    ");
             }
-            System.out.println(" ");
+            System.out.println("    ");
         }
     }
 
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.7) {
+        if (road < 0.8) {
             return 0;
         } else {
             return 1;
@@ -102,7 +103,7 @@ public class MainBrain {
         int range = (max - min) + 1;
         int number = (int) (Math.random() * range) + min;
         if (number == 0) {
-            randomWithRangeForPosition(100, 1);
+            randomWithRangeForPosition(max, min);
         }
         return number;
     }
@@ -145,7 +146,7 @@ public class MainBrain {
     }
 
     public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
-        ArrayList<Integer> route = new ArrayList<Integer>();
+        ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
         route.add(pointA);
         while(roadMatrix[pointA][pointB] != pointB){
             route.add(roadMatrix[pointA][pointB]);
