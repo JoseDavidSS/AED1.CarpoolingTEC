@@ -8,14 +8,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
-public class ConnectionManager implements Callable<TemporalHolder> {
+public class ConnectionManagerMapData implements Callable<TemporalHolder> {
 
     @Override
-    public TemporalHolder call() throws Exception {
-        try  {
+    public TemporalHolder call(){
+        try{
             URL url = new URL("http://192.168.1.16:9080/Server_war_exploded/carpoolingtec/map_data");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
+
             InputStream inputStream = con.getInputStream();
             InputStreamReader reader = new InputStreamReader(inputStream);
             char[] buffer = new char[1024];
@@ -25,9 +26,10 @@ public class ConnectionManager implements Callable<TemporalHolder> {
                 builder.append(new String(buffer,0,leidos));
             }
             reader.close();
+
             con.disconnect();
             return Serializer.deserializeHolder(builder.toString());
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
             return null;
         }

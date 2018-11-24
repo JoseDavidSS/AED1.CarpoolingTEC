@@ -1,8 +1,11 @@
 package tec.ac.cr.carpoolingtec.logic;
 
 public class List {
+
     public Node head = null;
     public int length = 0;
+
+    public List(){}
 
     /**
      * Method that adds elements to the simple list

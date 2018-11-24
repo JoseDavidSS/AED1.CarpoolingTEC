@@ -6,6 +6,7 @@ import tec.ac.cr.carpoolingtec.Data.Rider;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 
@@ -22,8 +23,10 @@ public class Add {
     @POST
     @Path("driver")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addDriver(Driver driver){
+    @Produces(MediaType.APPLICATION_JSON)
+    public Driver addDriver(Driver driver){
         driverArrayList.add(driver);
+        return driver;
     }
 
     /**
@@ -33,8 +36,10 @@ public class Add {
     @POST
     @Path("rider")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addRider(Rider rider){
+    @Produces(MediaType.APPLICATION_JSON)
+    public Rider addRider(Rider rider){
         ridersArrayList.add(rider);
+        return rider;
     }
 
 }

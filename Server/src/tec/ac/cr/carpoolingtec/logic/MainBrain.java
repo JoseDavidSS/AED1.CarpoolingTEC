@@ -11,7 +11,6 @@ public class MainBrain {
 
         List list = new List();
         createNodes(list);
-        list.printList();
 
         int matrixEnableRoads[][] = new int[30][30];
         int matrixLenghtRoads[][] = new int[30][30];
