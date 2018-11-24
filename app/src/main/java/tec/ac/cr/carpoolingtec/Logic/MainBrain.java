@@ -92,7 +92,7 @@ public class MainBrain {
 
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.8) {
+        if (road < 0.97) {
             return 0;
         } else {
             return 1;

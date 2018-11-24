@@ -1,6 +1,11 @@
 package tec.ac.cr.carpoolingtec;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PointF;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +13,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import tec.ac.cr.carpoolingtec.Data.Rider;
 import tec.ac.cr.carpoolingtec.Logic.List;
+import tec.ac.cr.carpoolingtec.Logic.MainBrain;
 import tec.ac.cr.carpoolingtec.Logic.Node;
+import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,13 +29,18 @@ public class RiderView extends AppCompatActivity {
 
     ArrayList clickedPoints = new ArrayList();
     ArrayList lineCount = new ArrayList();
+    int userID = TemporalHolder.userID;
+    TemporalHolder holder = MainBrain.preparation();
+    Rider rider = new Rider(userID, -1, false, -1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lineCount.add(99);
         setContentView(R.layout.activity_rider_view);
-        // organizePoints(Holder.list);
+        TextView mainLabel = findViewById(R.id.mainLabel);
+        mainLabel.setText("Hello, " + userID);
+        drawGraph(holder.getMatrixEnableRoads(), holder.getList());
     }
 
     public ArrayList getClickedPoints() {
@@ -39,11 +55,53 @@ public class RiderView extends AppCompatActivity {
         int point = v.getId();
         System.out.println("Point with ID: " + point + " has been selected");
         clickedPoints.add(point);
+        // If there are two clicked points
         if (clickedPoints.size() == 2) {
             System.out.println("Link between " + clickedPoints.get(0) + " and point " + clickedPoints.get(1));
-            drawLine(randomNumberX(), randomNumberY(), randomNumberX(), randomNumberY());
-            clickedPoints.clear();
-            toggleButtons(false);
+            // Paint settings
+            Paint paint = new Paint();
+            paint.setColor(Color.RED);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(6);
+            paint.setAntiAlias(true);
+            // Gets route between nodes
+            int origin = fromViewIDtoPointID((int) clickedPoints.get(0));
+            int destination = fromViewIDtoPointID((int) clickedPoints.get(1));
+            ArrayList route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+            // If there's no route between the nodes
+            if ((int) route.get(0) == -1) {
+                Context context = getApplicationContext();
+                CharSequence text = "There's no route between points";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                clickedPoints.clear();
+            } else {
+                drawRoute(route, holder.getList());
+                clickedPoints.clear();
+                toggleButtons(false);
+            }
+        }
+    }
+
+    public void drawRoute(ArrayList route, List points) {
+        int i = 0;
+        while (i != route.size() - 1) {
+            Node start = points.searchElement((int) route.get(i));
+            Node end = points.searchElement((int) route.get(i + 1));
+            float startx = start.getPosx();
+            float starty = start.getPosy();
+            float endx = end.getPosx();
+            float endy = end.getPosy();
+            // Sets paint data
+            Paint paint = new Paint();
+            paint.setColor(Color.BLUE);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(10);
+            paint.setAntiAlias(true);
+            // Draws line
+            drawLine(startx - 55, starty - 195, endx - 55, endy - 195, paint);
+            i++;
         }
     }
 
@@ -68,8 +126,8 @@ public class RiderView extends AppCompatActivity {
      */
     public void drawGraph(int[][] enableRoads, List points) {
         drawPoints(points);
-        for (int i = 0; i > 29; i++) {
-            for (int j = 0; j > 29; j++) {
+        for (int i=0; i < enableRoads.length; i++) {
+            for (int j=0; j < enableRoads[i].length; j++) {
                 // If there's a connection, draw a line
                 if (enableRoads[i][j] == 1) {
                     // Gets start and end points's x and y positions
@@ -79,7 +137,14 @@ public class RiderView extends AppCompatActivity {
                     float starty = start.getPosy();
                     float endx = end.getPosx();
                     float endy = end.getPosy();
-                    drawLine(startx, starty, endx, endy);
+                    // Sets paint data
+                    Paint paint = new Paint();
+                    paint.setColor(Color.RED);
+                    paint.setStyle(Paint.Style.STROKE);
+                    paint.setStrokeWidth(6);
+                    paint.setAntiAlias(true);
+                    // Draws line
+                    drawLine(startx - 55, starty - 195, endx - 55, endy - 195, paint);
                 }
             }
         }
@@ -92,10 +157,11 @@ public class RiderView extends AppCompatActivity {
      * @param endx X position of end point
      * @param endy Y position of end point
      */
-    public void drawLine(float startx, float starty, float endx, float endy) {
+    public void drawLine(float startx, float starty, float endx, float endy, Paint paint) {
         ConstraintLayout layout = (ConstraintLayout)findViewById(R.id.riderConstraint);
         ConstraintSet set = new ConstraintSet();
         lineView line = new lineView(this);
+        line.paint = paint;
         PointF start = new PointF(startx, starty);
         PointF end = new PointF(endx, endy);
         line.isDrawing = true;
@@ -118,14 +184,16 @@ public class RiderView extends AppCompatActivity {
      * @param v View
      */
     public void generate(View v){
-        int i = 1;
-        while (i != 30) {
-            Button myBtn;
-            myBtn = (Button) findViewById(getNode(i));
-            myBtn.setTranslationX(randomNumberX());
-            myBtn.setTranslationY(randomNumberY());
-            i++;
-        }
+//        int i = 1;
+//        while (i != 30) {
+//            Button myBtn;
+//            myBtn = (Button) findViewById(getNode(i));
+//            myBtn.setTranslationX(randomNumberX());
+//            myBtn.setTranslationY(randomNumberY());
+//            i++;
+//        }
+        ArrayList route = MainBrain.createRoute(0, 9, holder.getRoadMatrix());
+        drawRoute(route, holder.getList());
     }
 
     /**
@@ -246,6 +314,73 @@ public class RiderView extends AppCompatActivity {
         int low = 400;
         int high = 1700;
         int result = r.nextInt(high-low) + low;
+        return result;
+    }
+
+    public int fromViewIDtoPointID(int viewID) {
+        Button button = findViewById(viewID);
+        int result = -1;
+        if (button == findViewById(R.id.node1)) {
+            result = 0;
+        } else if (button == findViewById(R.id.node2)) {
+            result = 1;
+        } else if (button == findViewById(R.id.node3)) {
+            result = 2;
+        } else if (button == findViewById(R.id.node4)) {
+            result = 3;
+        } else if (button == findViewById(R.id.node5)) {
+            result = 4;
+        } else if (button == findViewById(R.id.node6)) {
+            result = 5;
+        } else if (button == findViewById(R.id.node7)) {
+            result = 6;
+        } else if (button == findViewById(R.id.node8)) {
+            result = 7;
+        } else if (button == findViewById(R.id.node9)) {
+            result = 8;
+        } else if (button == findViewById(R.id.node10)) {
+            result = 9;
+        } else if (button == findViewById(R.id.node11)) {
+            result = 10;
+        } else if (button == findViewById(R.id.node12)) {
+            result = 11;
+        } else if (button == findViewById(R.id.node13)) {
+            result = 12;
+        } else if (button == findViewById(R.id.node14)) {
+            result = 13;
+        } else if (button == findViewById(R.id.node15)) {
+            result = 14;
+        } else if (button == findViewById(R.id.node16)) {
+            result = 15;
+        } else if (button == findViewById(R.id.node17)) {
+            result = 16;
+        } else if (button == findViewById(R.id.node18)) {
+            result = 17;
+        } else if (button == findViewById(R.id.node19)) {
+            result = 18;
+        } else if (button == findViewById(R.id.node20)) {
+            result = 19;
+        } else if (button == findViewById(R.id.node21)) {
+            result = 20;
+        } else if (button == findViewById(R.id.node22)) {
+            result = 21;
+        } else if (button == findViewById(R.id.node23)) {
+            result = 22;
+        } else if (button == findViewById(R.id.node24)) {
+            result = 23;
+        } else if (button == findViewById(R.id.node25)) {
+            result = 24;
+        } else if (button == findViewById(R.id.node26)) {
+            result = 25;
+        } else if (button == findViewById(R.id.node27)) {
+            result = 26;
+        } else if (button == findViewById(R.id.node28)) {
+            result = 27;
+        } else if (button == findViewById(R.id.node29)) {
+            result = 28;
+        } else if (button == findViewById(R.id.node30)) {
+            result = 29;
+        }
         return result;
     }
 

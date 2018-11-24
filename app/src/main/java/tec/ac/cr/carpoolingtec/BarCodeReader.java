@@ -18,7 +18,7 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import java.io.IOException;
+import java.io.*;
 
 public class BarCodeReader extends AppCompatActivity {
 
