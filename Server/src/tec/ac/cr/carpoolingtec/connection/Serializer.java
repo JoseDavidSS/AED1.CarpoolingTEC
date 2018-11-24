@@ -9,7 +9,7 @@ public class Serializer {
     public void deserializer throws IOException{
         File file = new File("simple_bean.xml");
         XmlMapper xmlMapper = new XmlMapper();
-        String xml = inputStreamToString(new FileInputStream(file));
+        String xml = initialReader(new FileInputStream(file));
         SimpleBean value = xmlMapper.readValue(xml, SimpleBean.class);
     }
     public static String initialReader throws IOException {
