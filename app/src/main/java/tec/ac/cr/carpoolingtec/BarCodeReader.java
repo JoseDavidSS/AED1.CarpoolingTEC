@@ -2,6 +2,7 @@ package tec.ac.cr.carpoolingtec;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Vibrator;
@@ -12,11 +13,13 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import tec.ac.cr.carpoolingtec.Data.Rider;
 
 import java.io.*;
 
@@ -26,11 +29,14 @@ public class BarCodeReader extends AppCompatActivity {
     private CameraSource cameraSource;
     private TextView textView;
     private BarcodeDetector barcodeDetector;
+    private Button buttonRider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_code_reader);
+
+        buttonRider = findViewById(R.id.riderButton);
 
         surfaceView = findViewById(R.id.surfaceView);
         textView = findViewById(R.id.barcodeString);
@@ -84,7 +90,10 @@ public class BarCodeReader extends AppCompatActivity {
                         public void run() {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            textView.setText(barcode.valueAt(0).displayValue);
+                            String id = barcode.valueAt(0).displayValue;
+                            textView.setText(id);
+                            MainMenu.rider.setId(Integer.valueOf(id));
+                            MainMenu.ractive = true;
                         }
                     });
                 }

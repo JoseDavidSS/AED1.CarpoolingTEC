@@ -49,7 +49,7 @@ public class MainBrain {
      */
     public static void createNodes(List list) {
         for (int i = 0; i < 30; i++) {
-            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
+            list.addElement(randomWithRangeForPosition(700, 80), randomWithRangeForPosition(1200, 400), i);
         }
     }
 
@@ -112,7 +112,7 @@ public class MainBrain {
      */
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.8) {
+        if (road < 0.98) {
             return 0;
         } else {
             return 1;

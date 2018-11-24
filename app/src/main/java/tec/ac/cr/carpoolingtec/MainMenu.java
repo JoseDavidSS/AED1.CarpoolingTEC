@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -22,10 +23,16 @@ import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
 import org.json.JSONException;
 import org.json.JSONObject;
+import tec.ac.cr.carpoolingtec.Data.Driver;
+import tec.ac.cr.carpoolingtec.Data.Rider;
 
 public class MainMenu extends AppCompatActivity {
 
     private CallbackManager callbackManager = CallbackManager.Factory.create();
+    public static Driver driver = new Driver();
+    public static Rider rider = new Rider();
+    public static boolean ractive = false;
+    public static boolean dactive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +47,10 @@ public class MainMenu extends AppCompatActivity {
      * @param v View
      */
     public void goToRiderView(View v){
-        Intent intent = new Intent(this, RiderView.class);
-        startActivity(intent);
+        if(ractive){
+            Intent intent = new Intent(this, RiderView.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -57,8 +66,10 @@ public class MainMenu extends AppCompatActivity {
      * @param v View
      */
     public void goToDriverView(View v){
-        Intent intent = new Intent(this, DriverView.class);
-        startActivity(intent);
+        if(dactive){
+            Intent intent = new Intent(this, DriverView.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -101,7 +112,6 @@ public class MainMenu extends AppCompatActivity {
             public void onCancel() {
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(R.string.failure);
-                goToBarcode();
             }
 
             @Override
@@ -126,7 +136,7 @@ public class MainMenu extends AppCompatActivity {
         LISessionManager.getInstance(getApplicationContext()).init(this, buildScope(), new AuthListener() {
             @Override
             public void onAuthSuccess() {
-                fetchLinkedInInfo();
+                dactive = true;
                 goToDriverViewInternal();
             }
 
@@ -138,50 +148,6 @@ public class MainMenu extends AppCompatActivity {
         }, true);
     }
 
-    private void linkedInLogout(){
-        LISessionManager.getInstance(getApplicationContext()).clearSession();
-    }
-
-    /**
-     * Gets LinkedIn profile info
-     */
-    private void fetchLinkedInInfo(){
-        String url = "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,public-profile-url,email-address,picture-urls::(original))";
-
-        APIHelper apiHelper = APIHelper.getInstance(getApplicationContext());
-        apiHelper.getRequest(this, url, new ApiListener() {
-            @Override
-            public void onApiSuccess(ApiResponse apiResponse) {
-                try {
-                    JSONObject jsonObject = apiResponse.getResponseDataAsJson();
-                    String firstName = jsonObject.getString("firstName");
-                    String lastName = jsonObject.getString("lastName");
-                    String pictureURL = jsonObject.getString("pictureURL");
-                    String emailAddress = jsonObject.getString("emailAddress");
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("First Name" + firstName);
-                    stringBuilder.append("\n\n");
-                    stringBuilder.append("Last Name" + lastName);
-                    stringBuilder.append("\n\n");
-                    stringBuilder.append("Email" + emailAddress);
-
-                    TextView textView = findViewById(R.id.textView);
-                    textView.setText(stringBuilder);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onApiError(LIApiError liApiError) {
-                TextView textView = findViewById(R.id.textView);
-                textView.setText(R.string.error);
-            }
-        });
-    }
-
-    // Build the list of member permissions our LinkedIn session requires
     private static Scope buildScope() {
         return Scope.build(Scope.R_BASICPROFILE, Scope.W_SHARE, Scope.R_EMAILADDRESS);
     }

@@ -11,22 +11,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import tec.ac.cr.carpoolingtec.Data.Rider;
+import tec.ac.cr.carpoolingtec.Data.SubRoute;
 import tec.ac.cr.carpoolingtec.Logic.List;
 import tec.ac.cr.carpoolingtec.Logic.MainBrain;
 import tec.ac.cr.carpoolingtec.Logic.Node;
 import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
+import tec.ac.cr.carpoolingtec.Server.Connect;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class DriverView extends AppCompatActivity {
 
-    ArrayList clickedPoints = new ArrayList();
+    ArrayList<Integer> clickedPoints = new ArrayList<>();
     ArrayList lineCount = new ArrayList();
     ArrayList route = new ArrayList();
-    int userID = TemporalHolder.userID;
-    TemporalHolder holder = MainBrain.preparation();
-    Rider rider = new Rider(userID, -1, false, -1);
+    TemporalHolder holder;
     int moveCount = 1;
 
     @Override
@@ -34,7 +35,15 @@ public class DriverView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         lineCount.add(99);
         setContentView(R.layout.activity_driver_view);
-        drawGraph(holder.getMatrixEnableRoads(), holder.getList());
+        try {
+            holder = Connect.getMapData();
+            drawGraph(holder.getMatrixEnableRoads(), holder.getList());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public ArrayList getClickedPoints() {
@@ -45,7 +54,7 @@ public class DriverView extends AppCompatActivity {
      * Registers button input and updates GUI with lines.
      * @param v View
      */
-    public void modifyClickedPoints(View v) {
+    public void modifyClickedPoints(View v) throws ExecutionException, InterruptedException {
         int point = v.getId();
         System.out.println("Point with ID: " + point + " has been selected");
         clickedPoints.add(point);
@@ -64,7 +73,13 @@ public class DriverView extends AppCompatActivity {
             // Gets route between nodes
             int origin = fromViewIDtoPointID((int) clickedPoints.get(0));
             int destination = fromViewIDtoPointID((int) clickedPoints.get(1));
-            route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+
+            ArrayList<Integer> arrayList = new ArrayList<>();
+            arrayList.add(origin);
+            arrayList.add(destination);
+            SubRoute subRoute = new SubRoute(arrayList);
+            subRoute = Connect.createRoute(subRoute);
+            route = subRoute.getArrayList();
 
             // If there's no route between the nodes
             if ((int) route.get(0) == -1) {
@@ -75,6 +90,10 @@ public class DriverView extends AppCompatActivity {
                 toast.show();
                 clickedPoints.clear();
             } else {
+                MainMenu.driver.setDestination(destination);
+                MainMenu.driver.setLocation(origin);
+                MainMenu.driver = Connect.addDriver(MainMenu.driver);
+
                 drawRoute(route, holder.getList());
 
                 // Moves car to starting point

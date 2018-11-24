@@ -25,6 +25,13 @@ public class Add {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Driver addDriver(Driver driver){
+        driver.setId((int) (Math.random() * 100));
+        for (int i = 0; i < driverArrayList.size(); i++){
+            if (driver.getId() == driverArrayList.get(i).getId()){
+                driver.setId((int) (Math.random() * 10000));
+                i = 0;
+            }
+        }
         driverArrayList.add(driver);
         return driver;
     }
