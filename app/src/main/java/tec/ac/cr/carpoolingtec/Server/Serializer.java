@@ -50,7 +50,7 @@ public class Serializer {
         return objectMapper.readValue(json, SubRoute.class);
     }
 
-    public static void main(String args[]) throws ExecutionException, InterruptedException {
+   /* public static void main(String args[]) throws ExecutionException, InterruptedException {
         TemporalHolder holder = Connect.getMapData();
         Driver driver = new Driver(1, 0, 3, 98);
         driver = Connect.addDriver(driver);
@@ -73,5 +73,5 @@ public class Serializer {
         rider = Connect.updateRider(rider);
         System.out.println(rider.isInCar());
 
-    }
+    }*/
 }

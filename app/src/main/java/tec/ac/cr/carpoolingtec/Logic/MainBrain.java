@@ -11,7 +11,6 @@ public class MainBrain {
 
         List list = new List();
         createNodes(list);
-        list.printList();
 
         int matrixEnableRoads[][] = new int[30][30];
         int matrixLenghtRoads[][] = new int[30][30];
@@ -44,10 +43,13 @@ public class MainBrain {
         }
     }
 
-
+    /**
+     * Method that creates nodes for the simple list from 0 to 29
+     * @param list simple list containing nodes
+     */
     public static void createNodes(List list) {
         for (int i = 0; i < 30; i++) {
-            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
+            list.addElement(randomWithRangeForPosition(700, 80), randomWithRangeForPosition(1200, 400), i);
         }
     }
 
@@ -92,7 +94,7 @@ public class MainBrain {
 
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.97) {
+        if (road < 0.98) {
             return 0;
         } else {
             return 1;
@@ -146,7 +148,7 @@ public class MainBrain {
     }
 
     public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
-        ArrayList<Integer> route = new ArrayList<Integer>(); //Cambiar a lista enlazada xd
+        ArrayList<Integer> route = new ArrayList<Integer>();
         route.add(pointA);
         while(roadMatrix[pointA][pointB] != pointB){
             route.add(roadMatrix[pointA][pointB]);

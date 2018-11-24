@@ -8,13 +8,12 @@ public class Driver extends User{
     /**
      * Constructor of the driver class.
      * @param location current driver location in the map
-     * @param peopleInside current people inside the car
      * @param destination place where the driver wants to go
      * @param id random identification number of the car
      */
-    public Driver(int location, int peopleInside, int destination, int id) {
+    public Driver(int location, int destination, int id) {
         super(location, destination, id);
-        this.peopleInside = peopleInside;
+        this.peopleInside = 0;
         this.arrived = false;
     }
 
