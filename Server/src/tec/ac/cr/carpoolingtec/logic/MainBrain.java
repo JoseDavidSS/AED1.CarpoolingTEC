@@ -44,13 +44,20 @@ public class MainBrain {
         }
     }
 
-
+    /**
+     * Method that creates nodes for the simple list from 0 to 29
+     * @param list simple list containing nodes
+     */
     public static void createNodes(List list) {
         for (int i = 0; i < 30; i++) {
             list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
         }
     }
 
+    /**
+     * Method that randomly enable or disable a road between nodes
+     * @param matrixEnableRoads Matrix with enable roads between nodes
+     */
     public static void createRoads(int matrixEnableRoads[][]) {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -64,6 +71,12 @@ public class MainBrain {
         }
     }
 
+    /**
+     * Method that takes the length between nodes and add it to the matrixLengthRoads
+     * @param matrixLengthRoads Matrix with length between nodes
+     * @param matrixEnableRoads Matrix with enable roads between nodes
+     * @param list
+     */
     public static void createLenghts(int matrixLengthRoads[][], int matrixEnableRoads[][], List list) {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -81,6 +94,10 @@ public class MainBrain {
         }
     }
 
+    /**
+     * Method that prints graphs or matrix
+     * @param matrix matrix to be shown
+     */
     public static void printGraph(int[][] matrix) {
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 30; j++) {
@@ -90,6 +107,10 @@ public class MainBrain {
         }
     }
 
+    /**
+     * Method that gives random binary value for enable roads in matrixEnableRoads
+     * @return int 1 or 0
+     */
     public static int randomWithRangeForRoad() {
         double road = Math.random();
         if (road < 0.8) {
@@ -99,6 +120,12 @@ public class MainBrain {
         }
     }
 
+    /**
+     * Method that gives random x and y positions for nodes
+     * @param max maximum limit
+     * @param min minimum limit
+     * @return int number for the position
+     */
     public static int randomWithRangeForPosition(int max, int min) {
         int range = (max - min) + 1;
         int number = (int) (Math.random() * range) + min;
@@ -108,6 +135,12 @@ public class MainBrain {
         return number;
     }
 
+    /**
+     * Method that gives the length between nodes
+     * @param node1 first node chosen
+     * @param node2 second node chosen
+     * @return length between node1 and node2
+     */
     public static double getRoadsLenght(Node node1, Node node2) {
         int posX1 = node1.getPosx();
         int posY1 = node1.getPosy();
@@ -117,6 +150,12 @@ public class MainBrain {
         return (int) length;
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static int[][] createRoadsMatrix(int a, int b) {
         int roadsMatrix[][] = new int[30][30];
         for (int j = 0; j < b; j++) {
@@ -127,6 +166,12 @@ public class MainBrain {
         return roadsMatrix;
     }
 
+    /**
+     *
+     * @param lengthMatrix
+     * @param roadMatrix
+     * @return
+     */
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
         for (int i_j = 0; i_j < 30; i_j++) {
             for (int tmp_i = 0; tmp_i < 30; tmp_i++) {
@@ -145,6 +190,13 @@ public class MainBrain {
         return roadMatrix;
     }
 
+    /**
+     *
+     * @param pointA
+     * @param pointB
+     * @param roadMatrix
+     * @return
+     */
     public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
         ArrayList<Integer> route = new ArrayList<Integer>();
         route.add(pointA);
@@ -156,6 +208,12 @@ public class MainBrain {
         return route;
     }
 
+    /**
+     * Method that transforms an ArrayList into a simple list
+     * @param roadMatrix matrix with roads
+     * @param list simple list containing all nodes
+     * @param holder class containing data
+     */
     public static void transformArrayToList(int roadMatrix[][], List list, Holder holder){
         List route = new List();
         ArrayList<Integer> arrayRoute = createRoute(0,23, roadMatrix);

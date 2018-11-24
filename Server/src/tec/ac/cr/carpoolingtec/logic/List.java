@@ -4,6 +4,12 @@ public class List {
     public Node head = null;
     public int length = 0;
 
+    /**
+     * Method that adds elements to the simple list
+     * @param posx position in x
+     * @param posy position in y
+     * @param id node's ID
+     */
     public void addElement (int posx, int posy, int id) {
         if (this.head == null) {
             this.head = new Node(posx, posy, id);
@@ -18,6 +24,11 @@ public class List {
         }
     }
 
+    /**
+     * Method that searches for an element in the simple list by his ID
+     * @param id node's ID
+     * @return returns the node
+     */
     public Node searchElement (int id){
         Node tmp = this.head;
         while (tmp.id != id){
@@ -26,6 +37,9 @@ public class List {
         return tmp;
     }
 
+    /**
+     * Method that prints the simple list whit all its node's values
+     */
     public void printList(){
         Node tmp = this.head;
         String txt = "[";
