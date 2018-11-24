@@ -1,11 +1,9 @@
 package tec.ac.cr.carpoolingtec;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +16,6 @@ import tec.ac.cr.carpoolingtec.Logic.MainBrain;
 import tec.ac.cr.carpoolingtec.Logic.Node;
 import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -96,6 +93,11 @@ public class RiderView extends AppCompatActivity {
         }
     }
 
+    /**
+     * Draws route in GUI
+     * @param route ArrayList
+     * @param points List
+     */
     public void drawRoute(ArrayList route, List points) {
         int i = 0;
         while (i != route.size() - 1) {

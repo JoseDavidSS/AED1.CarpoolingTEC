@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
-import android.view.MotionEvent;
 import android.view.View;
 
 public class lineView extends View {
