@@ -13,6 +13,10 @@ public class MapData {
 
     public static Holder holder;
 
+    /**
+     * Method that sends the client the current graph, that has the map data
+     * @return instance of the holder class with all the data
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Holder getMapData() {
