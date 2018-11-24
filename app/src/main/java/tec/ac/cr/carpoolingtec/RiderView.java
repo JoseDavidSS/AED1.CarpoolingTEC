@@ -11,10 +11,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import tec.ac.cr.carpoolingtec.Data.Rider;
 import tec.ac.cr.carpoolingtec.Logic.List;
 import tec.ac.cr.carpoolingtec.Logic.MainBrain;
@@ -29,17 +26,17 @@ public class RiderView extends AppCompatActivity {
 
     ArrayList clickedPoints = new ArrayList();
     ArrayList lineCount = new ArrayList();
+    ArrayList route = new ArrayList();
     int userID = TemporalHolder.userID;
     TemporalHolder holder = MainBrain.preparation();
     Rider rider = new Rider(userID, -1, false, -1);
+    int moveCount = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lineCount.add(99);
         setContentView(R.layout.activity_rider_view);
-        TextView mainLabel = findViewById(R.id.mainLabel);
-        mainLabel.setText("Hello, " + userID);
         drawGraph(holder.getMatrixEnableRoads(), holder.getList());
     }
 
@@ -55,19 +52,23 @@ public class RiderView extends AppCompatActivity {
         int point = v.getId();
         System.out.println("Point with ID: " + point + " has been selected");
         clickedPoints.add(point);
+
         // If there are two clicked points
         if (clickedPoints.size() == 2) {
             System.out.println("Link between " + clickedPoints.get(0) + " and point " + clickedPoints.get(1));
+
             // Paint settings
             Paint paint = new Paint();
             paint.setColor(Color.RED);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(6);
             paint.setAntiAlias(true);
+
             // Gets route between nodes
             int origin = fromViewIDtoPointID((int) clickedPoints.get(0));
             int destination = fromViewIDtoPointID((int) clickedPoints.get(1));
-            ArrayList route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+            route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+
             // If there's no route between the nodes
             if ((int) route.get(0) == -1) {
                 Context context = getApplicationContext();
@@ -78,6 +79,17 @@ public class RiderView extends AppCompatActivity {
                 clickedPoints.clear();
             } else {
                 drawRoute(route, holder.getList());
+
+                // Moves person to starting point
+                ImageView personIcon = findViewById(R.id.person);
+                int startPointID = (int) route.get(0);
+                Node startPoint = holder.getList().searchElement(startPointID);
+                int xpos = startPoint.getPosx();
+                int ypos = startPoint.getPosy();
+                personIcon.setTranslationX(xpos - 30);
+                personIcon.setTranslationY(ypos - 45);
+
+                // Resets clickedPoints and toggles buttons off
                 clickedPoints.clear();
                 toggleButtons(false);
             }
@@ -93,12 +105,14 @@ public class RiderView extends AppCompatActivity {
             float starty = start.getPosy();
             float endx = end.getPosx();
             float endy = end.getPosy();
+
             // Sets paint data
             Paint paint = new Paint();
             paint.setColor(Color.BLUE);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(10);
             paint.setAntiAlias(true);
+
             // Draws line
             drawLine(startx - 55, starty - 195, endx - 55, endy - 195, paint);
             i++;
@@ -180,20 +194,26 @@ public class RiderView extends AppCompatActivity {
     }
 
     /**
-     * Randomizes 30 points in GUI.
+     * Moves car to next node in route
      * @param v View
      */
-    public void generate(View v){
-//        int i = 1;
-//        while (i != 30) {
-//            Button myBtn;
-//            myBtn = (Button) findViewById(getNode(i));
-//            myBtn.setTranslationX(randomNumberX());
-//            myBtn.setTranslationY(randomNumberY());
-//            i++;
-//        }
-        ArrayList route = MainBrain.createRoute(0, 9, holder.getRoadMatrix());
-        drawRoute(route, holder.getList());
+    public void next(View v) {
+        if (moveCount < route.size()) {
+            int destinationID = (int) route.get(moveCount);
+            Node destination = holder.getList().searchElement(destinationID);
+            int xpos = destination.getPosx();
+            int ypos = destination.getPosy();
+            ImageView carIcon = findViewById(R.id.car);
+            carIcon.setTranslationX(xpos - 30);
+            carIcon.setTranslationY(ypos - 45);
+            moveCount++;
+        } else {
+            Context context = getApplicationContext();
+            CharSequence text = "Already there, dude";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     /**
