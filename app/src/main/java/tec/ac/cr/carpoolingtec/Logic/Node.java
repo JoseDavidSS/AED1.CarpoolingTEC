@@ -21,6 +21,8 @@ public class Node {
         this.hasPerson = 0;
     }
 
+    public Node(){}
+
     /**
      * Método para obtener la posición en x inicial de la línea.
      * @return entero con la posición.

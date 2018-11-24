@@ -5,6 +5,8 @@ public class List {
     public Node head = null;
     public int length = 0;
 
+    public List(){}
+
     public void addElement (int posx, int posy, int id) {
         if (this.head == null) {
             this.head = new Node(posx, posy, id);

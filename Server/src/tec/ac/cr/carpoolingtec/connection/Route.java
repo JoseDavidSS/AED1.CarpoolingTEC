@@ -1,5 +1,6 @@
 package tec.ac.cr.carpoolingtec.connection;
 
+import tec.ac.cr.carpoolingtec.Data.SubRoute;
 import tec.ac.cr.carpoolingtec.logic.MainBrain;
 
 import javax.ws.rs.Consumes;
@@ -14,14 +15,16 @@ public class Route {
 
     /**
      * Method that receives an array with 2 locations and calculates their shortest distance
-     * @param arrayList array with the 2 locations
+     * @param route array with the 2 locations
      * @return an array with the path to follow
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList createRoute(ArrayList<Integer> arrayList){
-        return MainBrain.createRoute(arrayList.get(0), arrayList.get(1), MapData.holder.getRoadMatrix());
+    public SubRoute createRoute(SubRoute route){
+        ArrayList<Integer> arrayList = route.getArrayList();
+        route.setArrayList(MainBrain.createRoute(arrayList.get(0), arrayList.get(1), MapData.holder.getRoadMatrix()));
+        return route;
     }
 
 }
