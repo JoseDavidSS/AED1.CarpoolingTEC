@@ -33,32 +33,32 @@ public class lineView extends View {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                startPoint = new PointF(event.getX(), event.getY());
-                endPoint = new PointF();
-                isDrawing = true;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if(isDrawing) {
-                    endPoint.x = event.getX();
-                    endPoint.y = event.getY();
-                    invalidate();
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                if(isDrawing) {
-                    endPoint.x = event.getX();
-                    endPoint.y = event.getY();
-                    isDrawing = false;
-                    invalidate();
-                }
-                break;
-            default:
-                break;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                startPoint = new PointF(event.getX(), event.getY());
+//                endPoint = new PointF();
+//                isDrawing = true;
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                if(isDrawing) {
+//                    endPoint.x = event.getX();
+//                    endPoint.y = event.getY();
+//                    invalidate();
+//                }
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                if(isDrawing) {
+//                    endPoint.x = event.getX();
+//                    endPoint.y = event.getY();
+//                    isDrawing = false;
+//                    invalidate();
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//        return true;
+//    }
 }

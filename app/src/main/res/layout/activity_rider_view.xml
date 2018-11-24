@@ -8,19 +8,6 @@
         tools:context=".RiderView"
         android:id="@+id/riderConstraint">
 
-    <Button
-            android:text="Generate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/generateButton"
-            android:onClick="generate"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/carIcon"
-            />
-
     <TextView
             android:text="Hello, Rider"
             android:layout_width="wrap_content"
@@ -337,17 +324,22 @@
             android:onClick="modifyClickedPoints"/>
 
     <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:srcCompat="@drawable/caricon"
-            android:id="@+id/carIcon"
-            app:layout_constraintEnd_toStartOf="@+id/generateButton"
-            app:layout_constraintTop_toTopOf="@+id/generateButton"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="246dp"
-            app:layout_constraintBottom_toBottomOf="@+id/generateButton"
-            android:layout_marginEnd="21dp"
-            android:visibility="invisible"/>
+            android:text=""
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/car"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/caricon"/>
+
+    <ImageView
+            android:text=""
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/person"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/personicon"/>
 
     <TextView
             android:text="Made in Costa Rica by BrokenTeam. 2018"

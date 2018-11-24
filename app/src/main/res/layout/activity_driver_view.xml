@@ -5,7 +5,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DriverView">
+        tools:context=".DriverView"
+        android:id="@+id/driverConstraint">
+
+    <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextButton"
+            android:onClick="next"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/carIcon"
+            app:layout_constraintHorizontal_bias="0.921"/>
 
     <TextView
             android:text="Hello, Driver"
@@ -21,14 +35,324 @@
             android:layout_marginTop="24dp"/>
 
     <Button
-            android:text="Next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/nextButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:text="1"
+            android:layout_height="20dp"
+            android:id="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node2"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:layout_marginEnd="11dp"
+            android:background="@drawable/greendot"
+            android:layout_width="20dp"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node2"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            android:layout_marginBottom="51dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node3"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node4"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node5"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node6"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="7"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node7"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="8"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node8"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="9"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node9"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="10"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node10"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="11"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node11"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="12"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node12"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="13"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node13"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="14"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node14"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="15"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node15"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="16"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node16"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="17"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node17"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="18"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node18"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="19"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node19"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="20"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node20"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="21"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node21"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="22"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node22"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="23"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node23"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="24"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node24"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="25"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node25"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="26"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node26"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="27"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node27"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="28"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node28"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="29"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node29"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <Button
+            android:text="30"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/node30"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/greendot"
+            android:onClick="modifyClickedPoints"/>
+
+    <ImageView
+            android:text=""
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/car"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/caricon"/>
+
+    <ImageView
+            android:text=""
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/person"
+            app:layout_constraintStart_toStartOf="@+id/node1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/node1"
+            android:background="@drawable/personicon"/>
 
     <TextView
             android:text="Made in Costa Rica by BrokenTeam. 2018"
@@ -39,4 +363,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="17dp"/>
+
+
 </android.support.constraint.ConstraintLayout>
