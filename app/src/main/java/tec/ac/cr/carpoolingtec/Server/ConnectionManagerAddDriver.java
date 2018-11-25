@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 public class ConnectionManagerAddDriver implements Callable<Driver> {
 
     private Driver driver;
+    private String url;
 
     public Driver getDriver() {
         return driver;
@@ -19,11 +20,18 @@ public class ConnectionManagerAddDriver implements Callable<Driver> {
         this.driver = driver;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     @Override
     public Driver call() {
         try {
-            URL url = new URL("http://192.168.1.16:9080/Server_war_exploded/carpoolingtec/add/driver");
+            URL url = new URL("http://" + this.url + ":9080/Server_war_exploded/carpoolingtec/add/driver");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);

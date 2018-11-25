@@ -153,6 +153,24 @@ public class RiderView extends AppCompatActivity {
         }
     }
 
+    public void redrawRoute(int origin, int destination) {
+        drawGraph(holder.getMatrixEnableRoads(), holder.getList());
+        route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+        drawRoute(route, holder.getList());
+
+        // Moves car to starting point of redrawn route
+        ImageView carIcon = findViewById(R.id.car);
+        int startPointID = (int) route.get(0);
+        Node startPoint = holder.getList().searchElement(startPointID);
+        int xpos = startPoint.getPosx();
+        int ypos = startPoint.getPosy();
+        carIcon.setTranslationX(xpos - 30);
+        carIcon.setTranslationY(ypos - 45);
+
+        // Resets count data
+        moveCount = 1;
+    }
+
     /**
      * Draws points and lines in graph.
      * @param enableRoads array matrix ([][]) with connections
