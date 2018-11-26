@@ -130,7 +130,7 @@ public class RiderView extends AppCompatActivity {
             Paint paint = new Paint();
             paint.setColor(Color.BLUE);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(10);
+            paint.setStrokeWidth(6);
             paint.setAntiAlias(true);
 
             // Draws line
@@ -151,6 +151,24 @@ public class RiderView extends AppCompatActivity {
             i++;
             node = node.next;
         }
+    }
+
+    public void redrawRoute(int origin, int destination) {
+        drawGraph(holder.getMatrixEnableRoads(), holder.getList());
+        route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
+        drawRoute(route, holder.getList());
+
+        // Moves car to starting point of redrawn route
+        ImageView carIcon = findViewById(R.id.car);
+        int startPointID = (int) route.get(0);
+        Node startPoint = holder.getList().searchElement(startPointID);
+        int xpos = startPoint.getPosx();
+        int ypos = startPoint.getPosy();
+        carIcon.setTranslationX(xpos - 30);
+        carIcon.setTranslationY(ypos - 45);
+
+        // Resets count data
+        moveCount = 1;
     }
 
     /**
@@ -423,5 +441,24 @@ public class RiderView extends AppCompatActivity {
         }
         return result;
     }
+
+    public void update(View v) throws ExecutionException, InterruptedException {
+        MainMenu.rider = Connect.updateRider(MainMenu.rider);
+        if (MainMenu.rider.isArrived()){
+            this.smokePerson();
+        }else if (MainMenu.rider.isInCar()){
+            System.out.println("En el carro");
+        }
+    }
+
+    public void smokePerson() {
+        ImageView person = findViewById(R.id.person);
+        if (person.getVisibility() == View.VISIBLE) {
+            person.setVisibility(View.INVISIBLE);
+        } else {
+            person.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }

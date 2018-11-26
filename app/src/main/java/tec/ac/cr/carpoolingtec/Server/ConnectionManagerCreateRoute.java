@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 public class ConnectionManagerCreateRoute implements Callable<SubRoute> {
 
     private SubRoute sendRoute;
+    private String url;
 
     public SubRoute getSendRoute() {
         return sendRoute;
@@ -19,10 +20,18 @@ public class ConnectionManagerCreateRoute implements Callable<SubRoute> {
         this.sendRoute = sendRoute;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public SubRoute call(){
         try{
-            URL url = new URL("http://192.168.1.16:9080/Server_war_exploded/carpoolingtec/route");
+            URL url = new URL("http://" + this.url + ":9080/Server_war_exploded/carpoolingtec/route");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);

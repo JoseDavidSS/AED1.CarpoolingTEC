@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 public class ConnectionManagerAddRider implements Callable<Rider> {
 
     private Rider rider;
+    private String url;
 
     public Rider getRider() {
         return rider;
@@ -21,11 +22,18 @@ public class ConnectionManagerAddRider implements Callable<Rider> {
         this.rider = rider;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     @Override
     public Rider call() {
         try  {
-            URL url = new URL("http://192.168.1.16:9080/Server_war_exploded/carpoolingtec/add/rider");
+            URL url = new URL("http://" + this.url + ":9080/Server_war_exploded/carpoolingtec/add/rider");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setDoOutput(true);
