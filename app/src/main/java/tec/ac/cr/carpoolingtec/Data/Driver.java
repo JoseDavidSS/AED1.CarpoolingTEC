@@ -7,7 +7,6 @@ public class Driver extends User{
     private int peopleInside;
     private boolean onWay;
     private ArrayList<Integer> currentRoute;
-    private ArrayList<Rider> passengers;
 
     /**
      * Constructor of the driver class.
@@ -47,14 +46,6 @@ public class Driver extends User{
         this.currentRoute = currentRoute;
     }
 
-    public ArrayList<Rider> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(ArrayList<Rider> passengers) {
-        this.passengers = passengers;
-    }
-
     /**
      * Method to add people to the car
      */
@@ -62,7 +53,4 @@ public class Driver extends User{
         this.peopleInside++;
     }
 
-    public void addRider(Rider rider){
-        this.passengers.add(rider);
-    }
 }
