@@ -90,6 +90,7 @@ public class DriverView extends AppCompatActivity {
                 toast.show();
                 clickedPoints.clear();
             } else {
+                // Sends data to server
                 MainMenu.driver.setDestination(destination);
                 MainMenu.driver.setLocation(origin);
                 MainMenu.driver.setCurrentRoute(route);
@@ -155,6 +156,11 @@ public class DriverView extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redraws route if it changes
+     * @param origin int origin point
+     * @param destination int destination point
+     */
     public void redrawRoute(int origin, int destination) {
         drawGraph(holder.getMatrixEnableRoads(), holder.getList());
         route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
@@ -292,7 +298,7 @@ public class DriverView extends AppCompatActivity {
     /**
      * Converts high value point numbers to button ID's.
      * @param num int high value point number
-     * @return
+     * @return int View ID
      */
     public int getNode(int num) {
         int result = 0;
@@ -384,6 +390,11 @@ public class DriverView extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Converts Android View ID to internal point ID from 0 to 29
+     * @param viewID int Android View ID
+     * @return int ID from 0 to 29
+     */
     public int fromViewIDtoPointID(int viewID) {
         Button button = findViewById(viewID);
         int result = -1;
