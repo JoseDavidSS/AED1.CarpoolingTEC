@@ -56,8 +56,8 @@ public class MainBrain {
      * @param list simple list containing nodes
      */
     public static void createNodes(List list) {
-        for (int i = 0; i < 15; i++) {
-            list.addElement(randomWithRangeForPosition(700, 80), randomWithRangeForPosition(1200, 400), i);
+        for (int i = 0; i < 30; i++) {
+            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
         }
     }
 

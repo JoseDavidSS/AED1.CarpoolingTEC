@@ -442,8 +442,21 @@ public class RiderView extends AppCompatActivity {
         return result;
     }
 
-    public void update(View v) {
-        // Codigo aqui
+    public void update(View v) throws ExecutionException, InterruptedException {
+        MainMenu.rider = Connect.updateRider(MainMenu.rider);
+        if (MainMenu.rider.isInCar()){
+
+        }
     }
+
+    public void smokePerson() {
+        ImageView person = findViewById(R.id.person);
+        if (person.getVisibility() == View.VISIBLE) {
+            person.setVisibility(View.INVISIBLE);
+        } else {
+            person.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }

@@ -92,6 +92,7 @@ public class DriverView extends AppCompatActivity {
             } else {
                 MainMenu.driver.setDestination(destination);
                 MainMenu.driver.setLocation(origin);
+                MainMenu.driver.setCurrentRoute(route);
                 MainMenu.driver = Connect.addDriver(MainMenu.driver);
 
                 drawRoute(route, holder.getList());
@@ -236,8 +237,13 @@ public class DriverView extends AppCompatActivity {
      * Moves car to next node in route
      * @param v View
      */
-    public void next(View v) {
+    public void next(View v) throws ExecutionException, InterruptedException {
         if (moveCount < route.size()) {
+            MainMenu.driver = Connect.updateDriver(MainMenu.driver);
+            if (MainMenu.driver.isOnWay()) {
+                route = MainMenu.driver.getCurrentRoute();
+                redrawRoute((int) route.get(0), (int) route.get(route.size() - 1));
+            }
             int destinationID = (int) route.get(moveCount);
             Node destination = holder.getList().searchElement(destinationID);
             int xpos = destination.getPosx();
@@ -245,6 +251,8 @@ public class DriverView extends AppCompatActivity {
             ImageView carIcon = findViewById(R.id.car);
             carIcon.setTranslationX(xpos - 30);
             carIcon.setTranslationY(ypos - 45);
+            MainMenu.driver.setLocation(destinationID);
+            MainMenu.driver = Connect.updateDriver(MainMenu.driver);
             moveCount++;
         } else {
             Context context = getApplicationContext();
