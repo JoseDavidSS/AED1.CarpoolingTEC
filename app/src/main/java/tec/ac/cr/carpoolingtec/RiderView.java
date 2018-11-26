@@ -444,8 +444,10 @@ public class RiderView extends AppCompatActivity {
 
     public void update(View v) throws ExecutionException, InterruptedException {
         MainMenu.rider = Connect.updateRider(MainMenu.rider);
-        if (MainMenu.rider.isInCar()){
-
+        if (MainMenu.rider.isArrived()){
+            this.smokePerson();
+        }else if (MainMenu.rider.isInCar()){
+            System.out.println("En el carro");
         }
     }
 

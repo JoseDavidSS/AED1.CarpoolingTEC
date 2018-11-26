@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Driver extends User{
 
     private int peopleInside;
-    private boolean arrived;
     private boolean onWay;
     private ArrayList<Integer> currentRoute;
+    private ArrayList<Rider> passengers;
 
     /**
      * Constructor of the driver class.
@@ -18,7 +18,6 @@ public class Driver extends User{
     public Driver(int location, int destination, int id) {
         super(location, destination, id);
         this.peopleInside = 0;
-        this.arrived = false;
         this.onWay = false;
     }
 
@@ -30,14 +29,6 @@ public class Driver extends User{
 
     public void setPeopleInside(int peopleInside) {
         this.peopleInside = peopleInside;
-    }
-
-    public boolean isArrived() {
-        return arrived;
-    }
-
-    public void setArrived(boolean arrived) {
-        this.arrived = arrived;
     }
 
     public boolean isOnWay() {
@@ -56,7 +47,19 @@ public class Driver extends User{
         this.currentRoute = currentRoute;
     }
 
+    public ArrayList<Rider> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(ArrayList<Rider> passengers) {
+        this.passengers = passengers;
+    }
+
     public void addPeople(){
         this.peopleInside++;
+    }
+
+    public void addRider(Rider rider){
+        this.passengers.add(rider);
     }
 }

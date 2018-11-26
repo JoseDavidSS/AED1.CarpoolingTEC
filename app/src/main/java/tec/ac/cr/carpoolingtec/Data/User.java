@@ -5,6 +5,7 @@ public class User {
     private int location;
     private int destination;
     private int id;
+    private boolean arrived;
 
     /**
      * Constructor of the user class
@@ -16,6 +17,7 @@ public class User {
         this.location = location;
         this.destination = destination;
         this.id = id;
+        this.arrived = false;
     }
 
     public User(){}
@@ -42,5 +44,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isArrived() {
+        return arrived;
+    }
+
+    public void setArrived(boolean arrived) {
+        this.arrived = arrived;
     }
 }

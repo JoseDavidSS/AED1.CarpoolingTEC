@@ -35,6 +35,8 @@ public class Updater {
                         rider.setInCar(true);
                         driver.addPeople();
                         driver.setOnWay(false);
+                        driver.addRider(rider);
+                        Add.ridersArrayList.remove(rider);
                     }else if (!driver.isOnWay()){
                         ArrayList<Integer> personRoute = MainBrain.createRoute(rider.getLocation(), rider.getDestination(), MapData.holder.getRoadMatrix());
                         ArrayList<Integer> pickupRoute = MainBrain.createRoute(driver.getLocation(), rider.getLocation(), MapData.holder.getRoadMatrix());
@@ -79,9 +81,15 @@ public class Updater {
     @Produces(MediaType.APPLICATION_JSON)
     public Rider updateRider(Rider rider){
         for(int i = 0; i < Add.driverArrayList.size(); i++){
-            if (rider.getId() == Add.ridersArrayList.get(i).getId()){
-                Add.ridersArrayList.set(i, rider);
-                break;
+            Driver driver = Add.driverArrayList.get(i);
+            for(int j = 0; j < driver.getPassengers().size(); j++){
+                Rider updateRider = driver.getPassengers().get(j);
+                if (rider.getId() == updateRider.getId()){
+                    rider.setLocation(updateRider.getLocation());
+                    rider.setInCar(updateRider.isInCar());
+                    rider.setArrived(driver.isArrived());
+                    break;
+                }
             }
         }
         return rider;
