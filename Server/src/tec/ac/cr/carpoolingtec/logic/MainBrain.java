@@ -12,14 +12,14 @@ public class MainBrain {
         List list = new List();
         createNodes(list);
 
-        int matrixEnableRoads[][] = new int[30][30];
-        int matrixLenghtRoads[][] = new int[30][30];
+        int matrixEnableRoads[][] = new int[15][15];
+        int matrixLenghtRoads[][] = new int[15][15];
 
         createRoads(matrixEnableRoads);
         createLenghts(matrixLenghtRoads, matrixEnableRoads, list);
 
-        int roadMatrix[][] = createRoadsMatrix(30,30);
-        int matrixtmp[][] = new int[30][30];
+        int roadMatrix[][] = createRoadsMatrix(15,15);
+        int matrixtmp[][] = new int[15][15];
         copy(matrixLenghtRoads, matrixtmp);
 
         setMinRoad(matrixtmp, roadMatrix);
@@ -43,13 +43,21 @@ public class MainBrain {
         }
     }
 
+    public static boolean checkRoad(int pointA, int pointB, int[][] roads){
+        if (roads[pointA][pointB] == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * Method that creates nodes for the simple list from 0 to 29
      * @param list simple list containing nodes
      */
     public static void createNodes(List list) {
-        for (int i = 0; i < 30; i++) {
-            list.addElement(randomWithRangeForPosition(700, 80), randomWithRangeForPosition(1200, 400), i);
+        for (int i = 0; i < 15; i++) {
+            list.addElement(randomWithRangeForPosition(1080, 100), randomWithRangeForPosition(1700, 400), i);
         }
     }
 
@@ -58,8 +66,8 @@ public class MainBrain {
      * @param matrixEnableRoads Matrix with enable roads between nodes
      */
     public static void createRoads(int matrixEnableRoads[][]) {
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 if (i == j) {
                     matrixEnableRoads[i][j] = 0;
                 } else {
@@ -77,8 +85,8 @@ public class MainBrain {
      * @param list
      */
     public static void createLenghts(int matrixLengthRoads[][], int matrixEnableRoads[][], List list) {
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 if (matrixEnableRoads[i][j] == 0) {
                     if (i == j){
                         matrixLengthRoads[i][j] = 0;
@@ -98,8 +106,8 @@ public class MainBrain {
      * @param matrix matrix to be shown
      */
     public static void printGraph(int[][] matrix) {
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
                 System.out.print(matrix[i][j] + "    ");
             }
             System.out.println("    ");
@@ -112,7 +120,7 @@ public class MainBrain {
      */
     public static int randomWithRangeForRoad() {
         double road = Math.random();
-        if (road < 0.98) {
+        if (road < 0.9) {
             return 0;
         } else {
             return 1;
@@ -156,7 +164,7 @@ public class MainBrain {
      * @return
      */
     public static int[][] createRoadsMatrix(int a, int b) {
-        int roadsMatrix[][] = new int[30][30];
+        int roadsMatrix[][] = new int[15][15];
         for (int j = 0; j < b; j++) {
             for (int i = 0; i < a; i++) {
                 roadsMatrix[i][j] = j;
@@ -172,10 +180,10 @@ public class MainBrain {
      * @return
      */
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
-        for (int i_j = 0; i_j < 30; i_j++) {
-            for (int tmp_i = 0; tmp_i < 30; tmp_i++) {
+        for (int i_j = 0; i_j < 15; i_j++) {
+            for (int tmp_i = 0; tmp_i < 15; tmp_i++) {
                 if (tmp_i != i_j) {
-                    for (int tmp_j = 0; tmp_j < 30; tmp_j++) {
+                    for (int tmp_j = 0; tmp_j < 15; tmp_j++) {
                         if (tmp_j != i_j) {
                             if (lengthMatrix[i_j][tmp_j] + lengthMatrix[tmp_i][i_j] < lengthMatrix[tmp_i][tmp_j]) {
                                 roadMatrix[tmp_i][tmp_j] = i_j;
@@ -215,7 +223,7 @@ public class MainBrain {
      */
     public static void transformArrayToList(int roadMatrix[][], List list, Holder holder){
         List route = new List();
-        ArrayList<Integer> arrayRoute = createRoute(0,23, roadMatrix);
+        ArrayList<Integer> arrayRoute = createRoute(0,14, roadMatrix);
         for (int i = 0; i < arrayRoute.size(); i++){
             Node tmp = list.head;
             while (tmp != null){

@@ -23,8 +23,32 @@ public class Route {
     @Produces(MediaType.APPLICATION_JSON)
     public SubRoute createRoute(SubRoute route){
         ArrayList<Integer> arrayList = route.getArrayList();
-        route.setArrayList(MainBrain.createRoute(arrayList.get(0), arrayList.get(1), MapData.holder.getRoadMatrix()));
-        return route;
+        int a = arrayList.get(0);
+        int b = arrayList.get(1);
+        if (a == b){
+            arrayList.clear();
+            arrayList.add(-1);
+            route.setArrayList(arrayList);
+            return route;
+        }else{
+            arrayList = MainBrain.createRoute(a, b, MapData.holder.getRoadMatrix());
+            if (arrayList.size() == 2){
+                a = arrayList.get(0);
+                b = arrayList.get(1);
+                if (MainBrain.checkRoad(a, b, MapData.holder.getMatrixEnableRoads())){
+                    route.setArrayList(arrayList);
+                    return route;
+                }else{
+                    arrayList.clear();
+                    arrayList.add(-1);
+                    route.setArrayList(arrayList);
+                    return route;
+                }
+            }else{
+                route.setArrayList(arrayList);
+                return route;
+            }
+        }
     }
 
 }

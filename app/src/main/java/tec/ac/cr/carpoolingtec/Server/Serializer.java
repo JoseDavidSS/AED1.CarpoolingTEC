@@ -1,6 +1,5 @@
 package tec.ac.cr.carpoolingtec.Server;
 
-import android.drm.DrmRights;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import tec.ac.cr.carpoolingtec.Data.Driver;
@@ -9,8 +8,6 @@ import tec.ac.cr.carpoolingtec.Data.SubRoute;
 import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class Serializer {
 
@@ -49,29 +46,4 @@ public class Serializer {
     public static SubRoute deserializeRoute(String json) throws IOException {
         return objectMapper.readValue(json, SubRoute.class);
     }
-
-   /* public static void main(String args[]) throws ExecutionException, InterruptedException {
-        TemporalHolder holder = Connect.getMapData();
-        Driver driver = new Driver(1, 0, 3, 98);
-        driver = Connect.addDriver(driver);
-        System.out.println(driver.getId());
-        Rider rider = new Rider(2018088034, 2, false, 8);
-        rider = Connect.addRider(rider);
-        System.out.println(rider.getId());
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(1);
-        arrayList.add(25);
-        SubRoute subRoute = new SubRoute(arrayList);
-        subRoute = Connect.createRoute(subRoute);
-        System.out.println(subRoute.getArrayList());
-        driver.setLocation(3);
-        driver.setDestination(3);
-        rider.setLocation(3);
-        rider.setDestination(3);
-        driver = Connect.updateDriver(driver);
-        System.out.println(driver.isArrived());
-        rider = Connect.updateRider(rider);
-        System.out.println(rider.isInCar());
-
-    }*/
 }
