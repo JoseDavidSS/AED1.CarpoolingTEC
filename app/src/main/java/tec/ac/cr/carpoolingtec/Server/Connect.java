@@ -23,6 +23,13 @@ public class Connect {
         return future.get();
     }
 
+    /**
+     * Method that connects to the server to add the driver
+     * @param driver driver to be added
+     * @return the same driver, this is for confirmation that the everything was successful
+     * @throws ExecutionException in case of an error
+     * @throws InterruptedException in case of an error
+     */
     public static Driver addDriver(Driver driver) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Callable<Driver> callable = new ConnectionManagerAddDriver();
@@ -32,6 +39,13 @@ public class Connect {
         return future.get();
     }
 
+    /**
+     * Method that connects to the server to add the rider
+     * @param rider rider to be added
+     * @return the same rider, this is for confirmation
+     * @throws ExecutionException in case of an error
+     * @throws InterruptedException in case of an error
+     */
     public static Rider addRider(Rider rider) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Callable<Rider> callable = new ConnectionManagerAddRider();
@@ -41,6 +55,13 @@ public class Connect {
         return future.get();
     }
 
+    /**
+     * Method that connects to the server to create a route between 2 points
+     * @param subRoute arraylist with the 2 points that will be connected
+     * @return an arraylist with the new route to follow
+     * @throws ExecutionException in case of an error
+     * @throws InterruptedException in case of an error
+     */
     public static SubRoute createRoute(SubRoute subRoute) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Callable<SubRoute> callable = new ConnectionManagerCreateRoute();
@@ -50,6 +71,13 @@ public class Connect {
         return future.get();
     }
 
+    /**
+     * Method that connects to the server to update the driver data
+     * @param driver instance of the driver to be updated
+     * @return updated driver
+     * @throws ExecutionException in case of an error
+     * @throws InterruptedException in case of an error
+     */
     public static Driver updateDriver(Driver driver) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Callable<Driver> callable = new ConnectionManagerUpdateDriver();
@@ -59,6 +87,13 @@ public class Connect {
         return future.get();
     }
 
+    /**
+     * Method that connects to the server to update the rider
+     * @param rider instance of the rider to be updated
+     * @return updated rider
+     * @throws ExecutionException in case of an error
+     * @throws InterruptedException in case of an error
+     */
     public static Rider updateRider(Rider rider) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Callable<Rider> callable = new ConnectionManagerUpdateRider();

@@ -46,6 +46,9 @@ public class Driver extends User{
         this.currentRoute = currentRoute;
     }
 
+    /**
+     * Method to add people to the car
+     */
     public void addPeople(){
         this.peopleInside++;
     }

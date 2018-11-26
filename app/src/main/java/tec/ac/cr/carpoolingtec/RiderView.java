@@ -92,7 +92,7 @@ public class RiderView extends AppCompatActivity {
                 // Sends data to server
                 MainMenu.rider.setDestination(destination);
                 MainMenu.rider.setLocation(origin);
-                MainMenu.rider.setId(1);
+                //MainMenu.rider.setId(1);
                 MainMenu.rider = Connect.addRider(MainMenu.rider);
 
                 drawRoute(route, holder.getList());
@@ -462,9 +462,7 @@ public class RiderView extends AppCompatActivity {
      */
     public void update(View v) throws ExecutionException, InterruptedException {
         MainMenu.rider = Connect.updateRider(MainMenu.rider);
-        if (MainMenu.rider.isArrived()){
-            this.smokePerson();
-        }else if (MainMenu.rider.isInCar()){
+        if (MainMenu.rider.isInCar()){
             // Updates position of person in GUI
             int updatedPoint = MainMenu.rider.getLocation();
             List currentList = holder.getList();
@@ -476,6 +474,13 @@ public class RiderView extends AppCompatActivity {
             person.setVisibility(View.INVISIBLE);
             car.setTranslationX(xpos);
             car.setTranslationY(ypos);
+            if (MainMenu.rider.isArrived()){
+                Context context = getApplicationContext();
+                CharSequence text = "You are already there";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
         }
     }
 

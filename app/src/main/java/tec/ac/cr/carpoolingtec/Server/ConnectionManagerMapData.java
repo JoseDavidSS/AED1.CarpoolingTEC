@@ -20,6 +20,10 @@ public class ConnectionManagerMapData implements Callable<TemporalHolder> {
         this.url = url;
     }
 
+    /**
+     * Method that connects to the server to get the current map data
+     * @return all the current map data
+     */
     @Override
     public TemporalHolder call(){
         try{

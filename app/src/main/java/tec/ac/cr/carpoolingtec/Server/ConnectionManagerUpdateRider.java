@@ -28,6 +28,10 @@ public class ConnectionManagerUpdateRider implements Callable<Rider> {
         this.url = url;
     }
 
+    /**
+     * Method that connects to the server to update the rider data
+     * @return updated rider
+     */
     @Override
     public Rider call(){
         try{
