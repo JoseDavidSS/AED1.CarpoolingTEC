@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 public class Connect {
 
-    public static String url = "192.168.100.3";
+    public static String url = "192.168.43.175";
 
     /**
      * Method to connect to the server to retrieve the current map data
