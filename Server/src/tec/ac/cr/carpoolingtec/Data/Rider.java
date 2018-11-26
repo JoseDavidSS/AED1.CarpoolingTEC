@@ -3,6 +3,7 @@ package tec.ac.cr.carpoolingtec.Data;
 public class Rider extends User{
 
     private boolean inCar;
+    private int driverID;
 
     /**
      * Constructor of the rider class
@@ -13,6 +14,7 @@ public class Rider extends User{
     public Rider(int id, int location, int destination) {
         super(location, destination, id);
         this.inCar = false;
+        this.driverID = -1;
     }
 
     public Rider(){}
@@ -23,5 +25,13 @@ public class Rider extends User{
 
     public void setInCar(boolean inCar) {
         this.inCar = inCar;
+    }
+
+    public int getDriverID() {
+        return driverID;
+    }
+
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
     }
 }
