@@ -1,6 +1,5 @@
 package tec.ac.cr.carpoolingtec.Server;
 
-import android.drm.DrmRights;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import tec.ac.cr.carpoolingtec.Data.Driver;
@@ -9,8 +8,6 @@ import tec.ac.cr.carpoolingtec.Data.SubRoute;
 import tec.ac.cr.carpoolingtec.Logic.TemporalHolder;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class Serializer {
 
