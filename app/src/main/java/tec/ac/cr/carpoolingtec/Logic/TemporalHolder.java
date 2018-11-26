@@ -9,6 +9,9 @@ public class TemporalHolder {
     private List route;
     private List list;
 
+    /**
+     * Constructor of the holder class
+     */
     public TemporalHolder(){
     }
 

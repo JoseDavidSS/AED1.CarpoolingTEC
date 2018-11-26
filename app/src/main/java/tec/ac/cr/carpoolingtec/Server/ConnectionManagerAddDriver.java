@@ -28,6 +28,10 @@ public class ConnectionManagerAddDriver implements Callable<Driver> {
         this.url = url;
     }
 
+    /**
+     * Method that calls to add a driver
+     * @return the same driver for confirmation
+     */
     @Override
     public Driver call() {
         try {

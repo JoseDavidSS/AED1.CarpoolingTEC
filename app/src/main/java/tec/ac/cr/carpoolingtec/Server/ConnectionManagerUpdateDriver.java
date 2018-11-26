@@ -28,6 +28,10 @@ public class ConnectionManagerUpdateDriver implements Callable<Driver> {
         this.url = url;
     }
 
+    /**
+     * Method that connects to the server to update the driver data
+     * @return updated driver
+     */
     @Override
     public Driver call(){
         try{

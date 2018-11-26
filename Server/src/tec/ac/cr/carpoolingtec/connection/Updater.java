@@ -29,14 +29,13 @@ public class Updater {
         }
         if (driver.getPeopleInside() != 4){
             for(int i = 0; i < Add.ridersArrayList.size(); i++){
-                if (driver.getDestination() == Add.ridersArrayList.get(i).getDestination()){
+                if (driver.getDestination() == Add.ridersArrayList.get(i).getDestination() && !Add.ridersArrayList.get(i).isArrived()){
                     Rider rider = Add.ridersArrayList.get(i);
                     if (rider.getLocation() == driver.getLocation()){
                         rider.setInCar(true);
                         driver.addPeople();
                         driver.setOnWay(false);
                         rider.setDriverID(driver.getId());
-                        Add.ridersArrayList.remove(rider);
                     }else if (!driver.isOnWay()){
                         ArrayList<Integer> personRoute = MainBrain.createRoute(rider.getLocation(), rider.getDestination(), MapData.holder.getRoadMatrix());
                         ArrayList<Integer> pickupRoute = MainBrain.createRoute(driver.getLocation(), rider.getLocation(), MapData.holder.getRoadMatrix());
@@ -80,11 +79,25 @@ public class Updater {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Rider updateRider(Rider rider){
+        for (int i = 0; i < Add.ridersArrayList.size(); i++){
+            Rider updateRider = Add.ridersArrayList.get(i);
+            if (rider.getId() == updateRider.getId()){
+                rider = updateRider;
+                break;
+            }
+        }
         for(int i = 0; i < Add.driverArrayList.size(); i++){
             Driver driver = Add.driverArrayList.get(i);
             if (driver.getId() == rider.getDriverID()){
                 rider.setLocation(driver.getLocation());
                 rider.setArrived(driver.isArrived());
+                break;
+            }
+        }
+        for (int i = 0; i < Add.ridersArrayList.size(); i++){
+            Rider updateRider = Add.ridersArrayList.get(i);
+            if (rider.getId() == updateRider.getId()){
+                updateRider = rider;
                 break;
             }
         }

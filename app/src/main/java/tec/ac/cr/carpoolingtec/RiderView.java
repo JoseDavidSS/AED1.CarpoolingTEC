@@ -89,8 +89,10 @@ public class RiderView extends AppCompatActivity {
                 toast.show();
                 clickedPoints.clear();
             } else {
+                // Sends data to server
                 MainMenu.rider.setDestination(destination);
                 MainMenu.rider.setLocation(origin);
+                //MainMenu.rider.setId(1);
                 MainMenu.rider = Connect.addRider(MainMenu.rider);
 
                 drawRoute(route, holder.getList());
@@ -153,6 +155,11 @@ public class RiderView extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redraws route if it changes
+     * @param origin int origin point
+     * @param destination int destination point
+     */
     public void redrawRoute(int origin, int destination) {
         drawGraph(holder.getMatrixEnableRoads(), holder.getList());
         route = MainBrain.createRoute(origin, destination, holder.getRoadMatrix());
@@ -283,7 +290,7 @@ public class RiderView extends AppCompatActivity {
     /**
      * Converts high value point numbers to button ID's.
      * @param num int high value point number
-     * @return
+     * @return int View ID
      */
     public int getNode(int num) {
         int result = 0;
@@ -375,6 +382,11 @@ public class RiderView extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Converts Android View ID to internal point ID from 0 to 29
+     * @param viewID int Android View ID
+     * @return int node tom 0 to 29
+     */
     public int fromViewIDtoPointID(int viewID) {
         Button button = findViewById(viewID);
         int result = -1;
@@ -442,15 +454,39 @@ public class RiderView extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Updates GUI and person position with server data
+     * @param v View
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     public void update(View v) throws ExecutionException, InterruptedException {
         MainMenu.rider = Connect.updateRider(MainMenu.rider);
-        if (MainMenu.rider.isArrived()){
-            this.smokePerson();
-        }else if (MainMenu.rider.isInCar()){
-            System.out.println("En el carro");
+        if (MainMenu.rider.isInCar()){
+            // Updates position of person in GUI
+            int updatedPoint = MainMenu.rider.getLocation();
+            List currentList = holder.getList();
+            Node destination = currentList.searchElement(updatedPoint);
+            int xpos = destination.getPosx();
+            int ypos = destination.getPosy();
+            ImageView car = findViewById(R.id.car);
+            ImageView person = findViewById(R.id.person);
+            person.setVisibility(View.INVISIBLE);
+            car.setTranslationX(xpos);
+            car.setTranslationY(ypos);
+            if (MainMenu.rider.isArrived()){
+                Context context = getApplicationContext();
+                CharSequence text = "You are already there";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
         }
     }
 
+    /**
+     * Toggles visibility of person
+     */
     public void smokePerson() {
         ImageView person = findViewById(R.id.person);
         if (person.getVisibility() == View.VISIBLE) {

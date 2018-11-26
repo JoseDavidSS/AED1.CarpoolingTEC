@@ -23,26 +23,62 @@ public class Serializer {
         return objectMapper.readValue(json, TemporalHolder.class);
     }
 
+    /**
+     * Method to serialize a driver
+     * @param driver driver that will be serialized
+     * @return serialized driver as json
+     * @throws JsonProcessingException in case of an error
+     */
     public static String serializeDriver(Driver driver) throws JsonProcessingException {
         return objectMapper.writeValueAsString(driver);
     }
 
+    /**
+     * Method to deserialize a driver
+     * @param json json with the driver data
+     * @return instance of the driver
+     * @throws IOException in case of an error
+     */
     public static Driver deserializeDriver(String json) throws IOException {
         return objectMapper.readValue(json, Driver.class);
     }
 
+    /**
+     * Method to serialize a rider
+     * @param rider rider that will be serialized
+     * @return serialized rider as json
+     * @throws JsonProcessingException in case of an error
+     */
     public static String serializeRider(Rider rider) throws JsonProcessingException {
         return objectMapper.writeValueAsString(rider);
     }
 
+    /**
+     * Method to deserialize a rider
+     * @param json json with the rider data
+     * @return instance of the rider
+     * @throws IOException in case of an error
+     */
     public static Rider deserializeRider(String json) throws IOException {
         return objectMapper.readValue(json, Rider.class);
     }
 
+    /**
+     * Method to serialize a route
+     * @param subRoute route that will be serialized
+     * @return serialized route as json
+     * @throws JsonProcessingException in case of an error
+     */
     public static String serializeRoute(SubRoute subRoute) throws JsonProcessingException {
         return objectMapper.writeValueAsString(subRoute);
     }
 
+    /**
+     * Method to deserialize a route
+     * @param json json with the route data
+     * @return instance of the route
+     * @throws IOException in case of an error
+     */
     public static SubRoute deserializeRoute(String json) throws IOException {
         return objectMapper.readValue(json, SubRoute.class);
     }

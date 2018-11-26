@@ -31,8 +31,8 @@ public class MainMenu extends AppCompatActivity {
     private CallbackManager callbackManager = CallbackManager.Factory.create();
     public static Driver driver = new Driver();
     public static Rider rider = new Rider();
-    public static boolean ractive = false;
-    public static boolean dactive = false;
+    public static boolean ractive = true;
+    public static boolean dactive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

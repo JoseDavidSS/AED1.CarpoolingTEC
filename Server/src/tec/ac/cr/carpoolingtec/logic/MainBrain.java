@@ -6,6 +6,10 @@ public class MainBrain {
 
     public static boolean mapCreated = false;
 
+    /**
+     * Main logic method, it wraps al the important data
+     * @return holder with the data
+     */
     public static Holder preparation() {
         Holder holder = new Holder();
 
@@ -36,6 +40,11 @@ public class MainBrain {
         return holder;
     }
 
+    /**
+     * Method that copies a matrix
+     * @param from data that will be copied
+     * @param to data where it will copied
+     */
     private static void copy(int[][] from, int[][] to){
         for(int i=0; i < from.length; i++){
             for(int j=0; j < from[i].length; j++)
@@ -43,6 +52,13 @@ public class MainBrain {
         }
     }
 
+    /**
+     * Method that checks if the road exists
+     * @param pointA origin point
+     * @param pointB destination point
+     * @param roads matrix with the available roads
+     * @return boolean to check if the route exists
+     */
     public static boolean checkRoad(int pointA, int pointB, int[][] roads){
         if (roads[pointA][pointB] == 1){
             return true;
@@ -82,7 +98,7 @@ public class MainBrain {
      * Method that takes the length between nodes and add it to the matrixLengthRoads
      * @param matrixLengthRoads Matrix with length between nodes
      * @param matrixEnableRoads Matrix with enable roads between nodes
-     * @param list
+     * @param list of all the nodes
      */
     public static void createLenghts(int matrixLengthRoads[][], int matrixEnableRoads[][], List list) {
         for (int i = 0; i < 15; i++) {
@@ -158,10 +174,10 @@ public class MainBrain {
     }
 
     /**
-     *
-     * @param a
-     * @param b
-     * @return
+     * Creates the default RoadMatrix
+     * @param a The number of rows
+     * @param b The number of columns
+     * @return The default RoadMatrix
      */
     public static int[][] createRoadsMatrix(int a, int b) {
         int roadsMatrix[][] = new int[15][15];
@@ -174,10 +190,10 @@ public class MainBrain {
     }
 
     /**
-     *
-     * @param lengthMatrix
-     * @param roadMatrix
-     * @return
+     * The method applies the Floyd-Warshall method
+     * @param lengthMatrix The matrix that contains the length between the nodes
+     * @param roadMatrix The default RoadMatrix
+     * @return Roadmatrix modified
      */
     public static int[][] setMinRoad(int[][] lengthMatrix, int[][] roadMatrix) {
         for (int i_j = 0; i_j < 15; i_j++) {
@@ -198,11 +214,11 @@ public class MainBrain {
     }
 
     /**
-     *
-     * @param pointA
-     * @param pointB
+     * Create a arraylist for the route
+     * @param pointA The actual node
+     * @param pointB The destination node
      * @param roadMatrix
-     * @return
+     * @return Arryalist with the route
      */
     public static ArrayList createRoute(int pointA, int pointB, int[][] roadMatrix){
         ArrayList<Integer> route = new ArrayList<Integer>();

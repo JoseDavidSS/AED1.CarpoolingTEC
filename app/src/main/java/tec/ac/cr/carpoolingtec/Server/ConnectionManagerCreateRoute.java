@@ -28,6 +28,10 @@ public class ConnectionManagerCreateRoute implements Callable<SubRoute> {
         this.url = url;
     }
 
+    /**
+     * Method that connects to the server to create a new route
+     * @return the new route to follow
+     */
     @Override
     public SubRoute call(){
         try{

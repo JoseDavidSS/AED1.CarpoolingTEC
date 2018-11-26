@@ -30,6 +30,10 @@ public class ConnectionManagerAddRider implements Callable<Rider> {
         this.url = url;
     }
 
+    /**
+     * Method that calls the server to add the rider
+     * @return the same rider for confirmation
+     */
     @Override
     public Rider call() {
         try  {
