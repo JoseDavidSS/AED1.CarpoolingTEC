@@ -92,7 +92,10 @@ public class RiderView extends AppCompatActivity {
                 // Sends data to server
                 MainMenu.rider.setDestination(destination);
                 MainMenu.rider.setLocation(origin);
-                //MainMenu.rider.setId(1);
+                if (MainMenu.rider.getId() == -1){
+                    MainMenu.rider.setId(1);
+                }
+
                 MainMenu.rider = Connect.addRider(MainMenu.rider);
 
                 drawRoute(route, holder.getList());
