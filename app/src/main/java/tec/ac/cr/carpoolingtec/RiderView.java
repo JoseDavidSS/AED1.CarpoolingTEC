@@ -130,7 +130,7 @@ public class RiderView extends AppCompatActivity {
             Paint paint = new Paint();
             paint.setColor(Color.BLUE);
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(10);
+            paint.setStrokeWidth(6);
             paint.setAntiAlias(true);
 
             // Draws line
@@ -440,6 +440,10 @@ public class RiderView extends AppCompatActivity {
             result = 29;
         }
         return result;
+    }
+
+    public void update(View v) {
+        // Codigo aqui
     }
 
 }
