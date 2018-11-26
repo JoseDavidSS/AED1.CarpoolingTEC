@@ -32,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
     public static Driver driver = new Driver();
     public static Rider rider = new Rider();
     public static boolean ractive = true;
-    public static boolean dactive = false;
+    public static boolean dactive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
