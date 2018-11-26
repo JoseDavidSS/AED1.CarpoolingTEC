@@ -323,6 +323,14 @@
             android:background="@drawable/greendot"
             android:onClick="modifyClickedPoints"/>
 
+    <Button
+            android:text="Update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="24dp"
+            tools:layout_editor_absoluteX="307dp"
+            android:id="@+id/update"/>
+
     <ImageView
             android:text=""
             android:layout_width="30dp"
