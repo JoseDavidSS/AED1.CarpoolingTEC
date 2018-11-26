@@ -136,7 +136,7 @@ public class RiderView extends AppCompatActivity {
             paint.setAntiAlias(true);
 
             // Draws line
-            drawLine(startx - 55, starty - 195, endx - 55, endy - 195, paint);
+            drawLine(startx - 55, starty - 200, endx - 55, endy - 200, paint);
             i++;
         }
     }
