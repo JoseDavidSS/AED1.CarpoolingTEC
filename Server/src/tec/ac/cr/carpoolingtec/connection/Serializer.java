@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Serializer {
 
-    /*public void serializer throws IOException{
+    public void serializer throws IOException{
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.writeValue(new File("simple_bean.xml"), new SimpleBean());
         File file = new File("simple_bean.xml");
@@ -26,5 +26,5 @@ public class Serializer {
         }
         br.close();
         return sb.toString();
-    }*/
+    }
 }
